@@ -1,87 +1,128 @@
 /**
- * Day 2 Practice — TypeScript version
+ * Day 2 Practice — Locators & Interactions
  * Run: npx playwright test day2_practice.spec.ts --reporter=list
  *
- * Key points vs Python:
- *   - `page` fixture injected automatically — no browser.launch() or browser.close()
- *   - Each test() gets a completely fresh page — no state leaks between tests
- *   - selectOption() vs Python's select_option()
- *   - screenshot() takes an options object: { path: '...' }
- *   - Dialog handler registered with page.on() BEFORE the action that triggers it
- *   - Screenshots on failure are handled automatically via playwright.config.ts
  */
 
-import { test, expect, chromium } from '@playwright/test';
+// Import the test and expect functions from Playwright's test module
+import { test, expect } from '@playwright/test';
 
-test.describe('Day 2 Practice', () => { 
 
-  // --- Test 1: Login form + Screenshot ---
-  // Each test gets a fresh `page` — equivalent to Python's `page` fixture
-  test('login form interaction and screenshot', async ({ page }) => {
-    console.log('Testing login form...');
-    await page.goto('https://the-internet.herokuapp.com/login');
+/*
+* --- Test Data --- 
+*
+*/
 
-    // fill() is async — must await
-    await page.getByLabel('Username').fill('tomsmith');
-    await page.getByLabel('Password').fill('SuperSecretPassword!');
+const formData = [
+  {
+    firstName: 'John',
+    lastName: 'Doe',
+    email: 'john.doe@example.com',
+    phone: '1234567891',
+    dob: '1990-01-15',
+    gender: 'male'
+  },
+  {
+    firstName: 'Jane',
+    lastName: 'Doe',
+    email: 'jane.doe@example.com',
+    phone: '9876543210',
+    dob: '1990-02-15',
+    gender: 'female'
+  },
+  {
+    firstName: 'Jack',
+    lastName: 'Doe',
+    email: 'jack.doe@example.com',
+    phone: '5555555555',
+    dob: '1990-03-15',
+    gender: 'male'
+  }  
+];
 
-    // getByRole() with option object vs Python's get_by_role("button", name="Login")
-    await page.getByRole('button', { name: 'Login' }).click();
 
-    // toBeVisible() — camelCase: to_be_visible → toBeVisible
-    await expect(page.getByText('You logged into a secure area!')).toBeVisible();
-    console.log('✅ Login form passed');
 
-    // screenshot() takes an options object — { path, fullPage }
-    // Note: playwright.config.ts can also auto-capture screenshots on failure
-    await page.screenshot({ path: 'day2_success.png' });
-    console.log('✅ Screenshot saved: day2_success.png');
+// Describe groups related tests under a named suite
+test.describe('Day 02 – Locators & Interactions', () => {
+
+
+  /* 
+  *  Desc - Test to navigate to form page and assert result
+  *  Assertion - The page title should contain "Automate Form Submission" 
+  * 
+  */
+  test('navigate to form page', async ({ page }) => {
+    await page.goto('/practice/');
+    await page.locator('xpath=//*[@id="practice-card-forms"]/div[3]/span').click();
+    await expect(page).toHaveTitle(/Automate Form Submission/);
   });
 
-  // --- Test 2: Dropdown ---
-  test('dropdown selection', async ({ page }) => {
-    await page.goto('https://the-internet.herokuapp.com/dropdown');
+  /* 
+  *  Desc - Test to fill the form page and assert result
+  *  Assertion - The page title should contain "Automate Form Submission" 
+  * 
+  */
+  for (const data of formData) {
+    test (`fill the form page for ${data.firstName} ${data.lastName}`, async ({ page }) => {
+      
+      await page.goto('/practice/forms');
+      
+      // --- Personal Details ---
+      await page.locator('[id="firstName"]').fill(data.firstName);
+      await page.keyboard.press('Tab');
+      await page.locator('[id="lastName"]').fill(data.lastName);
+      await page.keyboard.press('Tab');
+      await page.locator('[id="email"]').fill(data.email);
+      await page.keyboard.press('Tab');
+      await page.locator('[id="phone"]').fill(data.phone);
+      await page.keyboard.press('Tab');
+      // date of birth field
+      await page.locator('[id="dob"]').fill(data.dob);
+      await page.keyboard.press('Tab');
 
-    // selectOption() — camelCase: select_option → selectOption
-    await page.locator('#dropdown').selectOption('Option 1');
+      // gender
+      if (data.gender === "male") {
+      await page.locator('[id="gender-male"]').check();
+      await page.keyboard.press('Tab');
+      } else {
+        await page.locator('[id="gender-female"]').check();
+        await page.keyboard.press('Tab');
+      }
 
-    // toHaveValue() — camelCase: to_have_value → toHaveValue
-    await expect(page.locator('#dropdown')).toHaveValue('1');
-    console.log('✅ Dropdown interaction passed');
-  });
 
-  // --- Test 3: Alert / Dialog handling ---
-  test('alert dialog handling', async ({ page }) => {
-    await page.goto('https://the-internet.herokuapp.com/javascript_alerts');
+      // --- Address Details ---
+      await page.locator('[id="country"]').click();
+      await page.getByRole('option', { name: 'India' }).click();
+      await page.keyboard.press('Tab');
+      await page.locator('[id="city"]').fill('Mumbai');
+      await page.keyboard.press('Tab');
+      await page.locator('[id="bio"]').fill('Something Soemething');
+      await page.keyboard.press('Tab');
 
-    // IMPORTANT: Register the dialog handler BEFORE the action that triggers it
-    // Handler is an async arrow function — dialog.accept() must be awaited
-    page.on('dialog', async (dialog) => {
-      console.log(`  Dialog type: ${dialog.type()}`);    // type() is a method, not a property
-      console.log(`  Dialog message: ${dialog.message()}`);
-      await dialog.accept();
+      // --- Interests ---
+      await page.locator('[id="interest-playwright"]').check();
+      await page.keyboard.press('Tab');
+
+      // --- Account Details ---
+      await page.locator('[id="password"]').fill('johndoe123');
+      await page.keyboard.press('Tab');
+      await page.locator('[id="confirmPassword"]').fill('johndoe123');
+      await page.keyboard.press('Tab');
+
+      // --- Terms ---
+      await page.locator('[id="terms"]').check();
+
+      // --- Submit ---
+      await page.locator('[id="submitFormBtn"]').click();
+
+      // -- Assertions ---
+      await expect(page.locator('[id="formSuccessMsg"]')).toBeVisible();
+      await expect(page.locator('xpath=//*[@id="formSuccessMsg"]/h3')).toHaveText(/Successfully!/);
+      // await expect(page.locator('[id="submittedName"]')).toHaveText('John Doe');
+      await expect(page.locator('[id="submittedName"]')).toHaveText(`${data.firstName} ${data.lastName}`);
+      await expect(page.locator('[id="resetFormBtn"]')).toBeVisible();
+
     });
-
-    await page.getByRole('button', { name: 'Click for JS Alert' }).click();
-
-    // toContainText() — camelCase: to_contain_text → toContainText
-    await expect(page.locator('#result')).toContainText('You successfuly clicked an alert');
-    console.log('✅ Alert handling passed');
-  });
-
-  // --- Test 4: Auto-wait demonstration ---
-  test('auto-wait in action', async ({ page }) => {
-    // Navigate to a page with dynamic content
-    await page.goto('https://the-internet.herokuapp.com/dynamic_loading/1');
-
-    // Click "Start" — this triggers a loading spinner
-    await page.getByRole('button', { name: 'Start' }).click();
-
-    // Playwright automatically waits for the text to appear — no setTimeout needed!
-    // toBeVisible() will keep retrying until visible (up to 30s default timeout)
-    await expect(page.locator('#finish')).toBeVisible();
-    await expect(page.locator('#finish')).toContainText('Hello World!');
-    console.log('✅ Auto-wait demonstration passed');
-  });
+  }  // for-loop ends here
 
 });

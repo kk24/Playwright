@@ -1,0 +1,555 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - banner [ref=e3]:
+    - navigation [ref=e4]:
+      - link "QA PlayGround - Automation Testing Practice Platform QA PlayGround" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - generic [ref=e6]:
+          - img "QA PlayGround - Automation Testing Practice Platform" [ref=e7]
+          - generic [ref=e8]: QA PlayGround
+      - navigation "Main navigation" [ref=e9]:
+        - link "Home" [ref=e10] [cursor=pointer]:
+          - /url: /
+        - link "Study Tracker (New feature)" [ref=e11] [cursor=pointer]:
+          - /url: /study-tracker/dashboard
+          - text: Study Tracker
+          - generic "(New feature)" [ref=e12]: New
+        - link "Bank Demo" [ref=e13] [cursor=pointer]:
+          - /url: /bank
+        - link "Practice" [ref=e14] [cursor=pointer]:
+          - /url: /practice
+        - link "QA Tools" [ref=e15] [cursor=pointer]:
+          - /url: /qa-tools
+        - link "Blog" [ref=e16] [cursor=pointer]:
+          - /url: /blog
+        - generic [ref=e17]:
+          - button "Toggle theme" [ref=e18] [cursor=pointer]:
+            - img
+            - generic [ref=e19]: Toggle theme
+          - link "Login" [ref=e20] [cursor=pointer]:
+            - /url: /login
+  - main [ref=e21]:
+    - generic [ref=e25]:
+      - navigation "Breadcrumb" [ref=e26]:
+        - link "Home" [ref=e27] [cursor=pointer]:
+          - /url: /
+        - img [ref=e28]
+        - link "Practice" [ref=e30] [cursor=pointer]:
+          - /url: /practice
+        - img [ref=e31]
+        - generic [ref=e33]: Input Field Automation Practice
+      - generic [ref=e35]:
+        - generic [ref=e36]:
+          - generic [ref=e37]:
+            - generic [ref=e38]:
+              - img [ref=e39]
+              - text: Beginner
+            - generic [ref=e42]:
+              - img [ref=e43]
+              - text: 15 min
+            - generic [ref=e46]:
+              - img [ref=e47]
+              - text: 6 scenarios
+          - heading "Input Field Automation Practice" [level=1] [ref=e50]
+          - paragraph [ref=e51]: Master text input interactions in Selenium & Playwright — typing, clearing, reading values, and detecting disabled/readonly states.
+        - generic [ref=e52]:
+          - region "Input field practice exercises" [ref=e53]:
+            - generic [ref=e55]:
+              - generic [ref=e56]:
+                - generic [ref=e57]:
+                  - generic [ref=e58]: "Scenario 1: Movie Name Input"
+                  - img [ref=e59]
+                - textbox "Enter hollywood movie name" [ref=e61]
+              - separator [ref=e62]
+              - generic [ref=e63]:
+                - text: "Scenario 2: Append a text and press keyboard tab"
+                - generic [ref=e64]:
+                  - 'textbox "Scenario 2: Append a text and press keyboard tab" [ref=e65]': I am good
+                  - generic [ref=e66]: Tab
+              - separator [ref=e67]
+              - generic [ref=e68]:
+                - text: "Scenario 3: Verify text present inside input field"
+                - generic [ref=e69]:
+                  - 'textbox "Scenario 3: Verify text present inside input field" [ref=e70]': QA PlayGround
+                  - img
+              - separator [ref=e71]
+              - generic [ref=e72]:
+                - text: "Scenario 4: Clear the text"
+                - 'textbox "Scenario 4: Clear the text" [ref=e73]': QA PlayGround Clear Me
+              - separator [ref=e74]
+              - generic [ref=e75]:
+                - generic [ref=e76]:
+                  - generic [ref=e77]: "Scenario 5: Check edit field is disabled"
+                  - generic [ref=e78]:
+                    - img [ref=e79]
+                    - text: DISABLED
+                - 'textbox "Scenario 5: Check edit field is disabled" [disabled] [ref=e82]': Enter
+              - separator [ref=e83]
+              - generic [ref=e84]:
+                - generic [ref=e85]:
+                  - generic [ref=e86]: "Scenario 6: Check text is readonly"
+                  - generic [ref=e87]:
+                    - img [ref=e88]
+                    - text: READ-ONLY
+                - 'textbox "Scenario 6: Check text is readonly" [ref=e91]': This text is readonly
+          - generic [ref=e92]:
+            - generic [ref=e93]:
+              - generic [ref=e94]:
+                - paragraph [ref=e95]: What You'll Learn
+                - img [ref=e96]
+              - generic [ref=e99]:
+                - generic [ref=e100]:
+                  - button "Selenium (Java)" [ref=e101] [cursor=pointer]
+                  - button "Playwright (JS/PY)" [ref=e102] [cursor=pointer]
+                - generic [ref=e103]:
+                  - paragraph [ref=e104]: Selenium (Java)
+                  - list [ref=e105]:
+                    - listitem [ref=e106]:
+                      - generic [ref=e108]: sendKeys()
+                    - listitem [ref=e109]:
+                      - generic [ref=e111]: clear()
+                    - listitem [ref=e112]:
+                      - generic [ref=e114]: getAttribute()
+                    - listitem [ref=e115]:
+                      - generic [ref=e117]: isEnabled()
+                    - listitem [ref=e118]:
+                      - generic [ref=e120]: Keys.TAB
+              - generic [ref=e121]:
+                - img [ref=e122]
+                - generic [ref=e125]: Tutorial video coming soon
+            - generic [ref=e126]:
+              - paragraph [ref=e127]: Up Next
+              - link "Practice Buttons automation — next element" [ref=e128] [cursor=pointer]:
+                - /url: /practice/buttons
+                - img [ref=e130]
+                - generic [ref=e131]:
+                  - paragraph [ref=e132]: Buttons
+                  - paragraph [ref=e133]: Click, double-click, right-click, and disabled buttons
+                - img [ref=e134]
+        - generic [ref=e136]:
+          - heading "Test Cases" [level=2] [ref=e137]
+          - generic [ref=e138]:
+            - 'heading "TC01: Verify successful movie name input" [level=3] [ref=e140]':
+              - 'button "TC01: Verify successful movie name input" [ref=e141] [cursor=pointer]':
+                - generic [ref=e142]: "TC01: Verify successful movie name input"
+                - img [ref=e143]
+            - 'heading "TC02: Verify input placeholder disappears on typing" [level=3] [ref=e146]':
+              - 'button "TC02: Verify input placeholder disappears on typing" [ref=e147] [cursor=pointer]':
+                - generic [ref=e148]: "TC02: Verify input placeholder disappears on typing"
+                - img [ref=e149]
+            - 'heading "TC03: Verify keyboard tab triggers focus change after append" [level=3] [ref=e152]':
+              - 'button "TC03: Verify keyboard tab triggers focus change after append" [ref=e153] [cursor=pointer]':
+                - generic [ref=e154]: "TC03: Verify keyboard tab triggers focus change after append"
+                - img [ref=e155]
+            - 'heading "TC04: Verify appended text value is retained in the field" [level=3] [ref=e158]':
+              - 'button "TC04: Verify appended text value is retained in the field" [ref=e159] [cursor=pointer]':
+                - generic [ref=e160]: "TC04: Verify appended text value is retained in the field"
+                - img [ref=e161]
+            - 'heading "TC05: Verify text present inside input field matches expected value" [level=3] [ref=e164]':
+              - 'button "TC05: Verify text present inside input field matches expected value" [ref=e165] [cursor=pointer]':
+                - generic [ref=e166]: "TC05: Verify text present inside input field matches expected value"
+                - img [ref=e167]
+            - 'heading "TC06: Verify getAttribute returns the correct input value" [level=3] [ref=e170]':
+              - 'button "TC06: Verify getAttribute returns the correct input value" [ref=e171] [cursor=pointer]':
+                - generic [ref=e172]: "TC06: Verify getAttribute returns the correct input value"
+                - img [ref=e173]
+            - 'heading "TC07: Verify input field text can be cleared successfully" [level=3] [ref=e176]':
+              - 'button "TC07: Verify input field text can be cleared successfully" [ref=e177] [cursor=pointer]':
+                - generic [ref=e178]: "TC07: Verify input field text can be cleared successfully"
+                - img [ref=e179]
+            - 'heading "TC08: Verify field is empty after executing clear action" [level=3] [ref=e182]':
+              - 'button "TC08: Verify field is empty after executing clear action" [ref=e183] [cursor=pointer]':
+                - generic [ref=e184]: "TC08: Verify field is empty after executing clear action"
+                - img [ref=e185]
+            - 'heading "TC09: Verify disabled input field cannot be edited by user" [level=3] [ref=e188]':
+              - 'button "TC09: Verify disabled input field cannot be edited by user" [ref=e189] [cursor=pointer]':
+                - generic [ref=e190]: "TC09: Verify disabled input field cannot be edited by user"
+                - img [ref=e191]
+            - 'heading "TC10: Verify isEnabled() returns false for disabled input" [level=3] [ref=e194]':
+              - 'button "TC10: Verify isEnabled() returns false for disabled input" [ref=e195] [cursor=pointer]':
+                - generic [ref=e196]: "TC10: Verify isEnabled() returns false for disabled input"
+                - img [ref=e197]
+            - 'heading "TC11: Verify readonly input field does not accept user typing" [level=3] [ref=e200]':
+              - 'button "TC11: Verify readonly input field does not accept user typing" [ref=e201] [cursor=pointer]':
+                - generic [ref=e202]: "TC11: Verify readonly input field does not accept user typing"
+                - img [ref=e203]
+            - 'heading "TC12: Verify getAttribute returns correct readonly attribute value" [level=3] [ref=e206]':
+              - 'button "TC12: Verify getAttribute returns correct readonly attribute value" [ref=e207] [cursor=pointer]':
+                - generic [ref=e208]: "TC12: Verify getAttribute returns correct readonly attribute value"
+                - img [ref=e209]
+      - article [ref=e211]:
+        - generic [ref=e212]:
+          - heading "Introduction" [level=2] [ref=e213]
+          - paragraph [ref=e214]: "Input fields are the foundation of form automation. Common scenarios include:"
+          - list [ref=e215]:
+            - listitem [ref=e216]:
+              - strong [ref=e217]: Type into a field
+              - text: —
+              - code [ref=e218]: "`sendKeys`"
+              - text: /
+              - code [ref=e219]: "`fill`"
+            - listitem [ref=e220]:
+              - strong [ref=e221]: Clear a field
+              - text: — remove existing text before typing
+            - listitem [ref=e222]:
+              - strong [ref=e223]: Read the current value
+              - text: —
+              - code [ref=e224]: "`getAttribute(\"value\")`"
+            - listitem [ref=e225]:
+              - strong [ref=e226]: Check disabled inputs
+              - text: — field exists but cannot be edited
+            - listitem [ref=e227]:
+              - strong [ref=e228]: Check readonly inputs
+              - text: — field displays text but rejects keyboard input
+          - heading "Key Methods Summary" [level=2] [ref=e229]
+          - table [ref=e230]:
+            - rowgroup [ref=e231]:
+              - row "Action Selenium (Java) Playwright (JS) Playwright (Python)" [ref=e232]:
+                - columnheader "Action" [ref=e233]
+                - columnheader "Selenium (Java)" [ref=e234]
+                - columnheader "Playwright (JS)" [ref=e235]
+                - columnheader "Playwright (Python)" [ref=e236]
+            - rowgroup [ref=e237]:
+              - 'row "Type text `sendKeys(\"text\")` `fill(\"text\")` `fill(\"text\")`" [ref=e238]':
+                - cell "Type text" [ref=e239]
+                - 'cell "`sendKeys(\"text\")`" [ref=e240]':
+                  - code [ref=e241]: "`sendKeys(\"text\")`"
+                - 'cell "`fill(\"text\")`" [ref=e242]':
+                  - code [ref=e243]: "`fill(\"text\")`"
+                - 'cell "`fill(\"text\")`" [ref=e244]':
+                  - code [ref=e245]: "`fill(\"text\")`"
+              - 'row "Clear field `clear()` `fill(\"\")` `fill(\"\")`" [ref=e246]':
+                - cell "Clear field" [ref=e247]
+                - 'cell "`clear()`" [ref=e248]':
+                  - code [ref=e249]: "`clear()`"
+                - 'cell "`fill(\"\")`" [ref=e250]':
+                  - code [ref=e251]: "`fill(\"\")`"
+                - 'cell "`fill(\"\")`" [ref=e252]':
+                  - code [ref=e253]: "`fill(\"\")`"
+              - 'row "Read value `getAttribute(\"value\")` `inputValue()` `input_value()`" [ref=e254]':
+                - cell "Read value" [ref=e255]
+                - 'cell "`getAttribute(\"value\")`" [ref=e256]':
+                  - code [ref=e257]: "`getAttribute(\"value\")`"
+                - 'cell "`inputValue()`" [ref=e258]':
+                  - code [ref=e259]: "`inputValue()`"
+                - 'cell "`input_value()`" [ref=e260]':
+                  - code [ref=e261]: "`input_value()`"
+              - 'row "Is disabled `!isEnabled()` `toBeDisabled()` `to_be_disabled()`" [ref=e262]':
+                - cell "Is disabled" [ref=e263]
+                - 'cell "`!isEnabled()`" [ref=e264]':
+                  - code [ref=e265]: "`!isEnabled()`"
+                - 'cell "`toBeDisabled()`" [ref=e266]':
+                  - code [ref=e267]: "`toBeDisabled()`"
+                - 'cell "`to_be_disabled()`" [ref=e268]':
+                  - code [ref=e269]: "`to_be_disabled()`"
+              - 'row "Is readonly `getAttribute(\"readonly\")` `toHaveAttribute(\"readonly\", \"\")` `to_have_attribute(...)`" [ref=e270]':
+                - cell "Is readonly" [ref=e271]
+                - 'cell "`getAttribute(\"readonly\")`" [ref=e272]':
+                  - code [ref=e273]: "`getAttribute(\"readonly\")`"
+                - 'cell "`toHaveAttribute(\"readonly\", \"\")`" [ref=e274]':
+                  - code [ref=e275]: "`toHaveAttribute(\"readonly\", \"\")`"
+                - 'cell "`to_have_attribute(...)`" [ref=e276]':
+                  - code [ref=e277]: "`to_have_attribute(...)`"
+              - 'row "Press Tab `sendKeys(Keys.TAB)` `press(\"Tab\")` `press(\"Tab\")`" [ref=e278]':
+                - cell "Press Tab" [ref=e279]
+                - 'cell "`sendKeys(Keys.TAB)`" [ref=e280]':
+                  - code [ref=e281]: "`sendKeys(Keys.TAB)`"
+                - 'cell "`press(\"Tab\")`" [ref=e282]':
+                  - code [ref=e283]: "`press(\"Tab\")`"
+                - 'cell "`press(\"Tab\")`" [ref=e284]':
+                  - code [ref=e285]: "`press(\"Tab\")`"
+          - separator [ref=e286]
+          - heading "1. Type text into an input field" [level=2] [ref=e287]
+          - heading "Selenium (Java)" [level=3] [ref=e288]
+          - figure [ref=e289]:
+            - code [ref=e291]:
+              - generic [ref=e292]: driver.findElement(By.id("movieName")).sendKeys("Inception");
+              - button "Copy code" [ref=e293] [cursor=pointer]
+          - heading "Playwright (JS)" [level=3] [ref=e295]
+          - figure [ref=e296]:
+            - code [ref=e298]:
+              - generic [ref=e299]: await page.fill("#movieName", "Inception");
+              - button "Copy code" [ref=e300] [cursor=pointer]
+          - heading "Playwright (Python)" [level=3] [ref=e302]
+          - figure [ref=e303]:
+            - code [ref=e305]:
+              - generic [ref=e306]: page.fill("#movieName", "Inception")
+              - button "Copy code" [ref=e307] [cursor=pointer]
+          - separator [ref=e309]
+          - heading "2. Append text and press Tab" [level=2] [ref=e310]
+          - blockquote [ref=e311]:
+            - paragraph [ref=e312]:
+              - text: ⚠️
+              - strong [ref=e313]: "Note:"
+              - text: Playwright's
+              - code [ref=e314]: "`fill()`"
+              - text: clears the field before typing. To truly append existing text, use
+              - code [ref=e315]: "`click()`"
+              - text: +
+              - code [ref=e316]: "`keyboard.type()`"
+              - text: instead.
+          - heading "Selenium (Java)" [level=3] [ref=e317]
+          - figure [ref=e318]:
+            - code [ref=e320]:
+              - generic [ref=e321]: WebElement field = driver.findElement(By.id("appendText"));
+              - generic [ref=e322]: field.sendKeys(" and feeling great");
+              - generic [ref=e323]: field.sendKeys(Keys.TAB);
+              - button "Copy code" [ref=e324] [cursor=pointer]
+          - heading "Playwright (JS)" [level=3] [ref=e326]
+          - figure [ref=e327]:
+            - code [ref=e329]:
+              - generic [ref=e330]: // click to focus, then type to append (fill() would clear first)
+              - generic [ref=e331]: await page.locator("#appendText").click();
+              - generic [ref=e332]: await page.keyboard.press("End");
+              - generic [ref=e333]: await page.keyboard.type(" and feeling great");
+              - generic [ref=e334]: await page.locator("#appendText").press("Tab");
+              - button "Copy code" [ref=e335] [cursor=pointer]
+          - heading "Playwright (Python)" [level=3] [ref=e337]
+          - figure [ref=e338]:
+            - code [ref=e340]:
+              - generic [ref=e341]: "# click to focus, then type to append (fill() would clear first)"
+              - generic [ref=e342]: page.locator("#appendText").click()
+              - generic [ref=e343]: page.keyboard.press("End")
+              - generic [ref=e344]: page.keyboard.type(" and feeling great")
+              - generic [ref=e345]: page.locator("#appendText").press("Tab")
+              - button "Copy code" [ref=e346] [cursor=pointer]
+          - separator [ref=e348]
+          - heading "3. Verify text present inside an input field" [level=2] [ref=e349]
+          - heading "Selenium (Java)" [level=3] [ref=e350]
+          - figure [ref=e351]:
+            - code [ref=e353]:
+              - generic [ref=e354]: String value = driver.findElement(By.id("insideText")).getAttribute("value");
+              - generic [ref=e355]: assertEquals("QA PlayGround", value);
+              - button "Copy code" [ref=e356] [cursor=pointer]
+          - heading "Playwright (JS)" [level=3] [ref=e358]
+          - figure [ref=e359]:
+            - code [ref=e361]:
+              - generic [ref=e362]: await expect(page.locator("#insideText")).toHaveValue("QA PlayGround");
+              - button "Copy code" [ref=e363] [cursor=pointer]
+          - heading "Playwright (Python)" [level=3] [ref=e365]
+          - figure [ref=e366]:
+            - code [ref=e368]:
+              - generic [ref=e369]: expect(page.locator("#insideText")).to_have_value("QA PlayGround")
+              - button "Copy code" [ref=e370] [cursor=pointer]
+          - separator [ref=e372]
+          - heading "4. Clear an input field" [level=2] [ref=e373]
+          - heading "Selenium (Java)" [level=3] [ref=e374]
+          - figure [ref=e375]:
+            - code [ref=e377]:
+              - generic [ref=e378]: WebElement field = driver.findElement(By.id("clearText"));
+              - generic [ref=e379]: field.clear();
+              - generic [ref=e380]: assertEquals("", field.getAttribute("value"));
+              - button "Copy code" [ref=e381] [cursor=pointer]
+          - heading "Playwright (JS)" [level=3] [ref=e383]
+          - figure [ref=e384]:
+            - code [ref=e386]:
+              - generic [ref=e387]: await page.locator("#clearText").fill("");
+              - generic [ref=e388]: await expect(page.locator("#clearText")).toHaveValue("");
+              - button "Copy code" [ref=e389] [cursor=pointer]
+          - heading "Playwright (Python)" [level=3] [ref=e391]
+          - figure [ref=e392]:
+            - code [ref=e394]:
+              - generic [ref=e395]: page.locator("#clearText").fill("")
+              - generic [ref=e396]: expect(page.locator("#clearText")).to_have_value("")
+              - button "Copy code" [ref=e397] [cursor=pointer]
+          - separator [ref=e399]
+          - heading "5. Check an input is disabled" [level=2] [ref=e400]
+          - heading "Selenium (Java)" [level=3] [ref=e401]
+          - figure [ref=e402]:
+            - code [ref=e404]:
+              - generic [ref=e405]: WebElement disabledInput = driver.findElement(By.id("disabledInput"));
+              - generic [ref=e406]: assertFalse(disabledInput.isEnabled());
+              - button "Copy code" [ref=e407] [cursor=pointer]
+          - heading "Playwright (JS)" [level=3] [ref=e409]
+          - figure [ref=e410]:
+            - code [ref=e412]:
+              - generic [ref=e413]: await expect(page.locator("#disabledInput")).toBeDisabled();
+              - button "Copy code" [ref=e414] [cursor=pointer]
+          - heading "Playwright (Python)" [level=3] [ref=e416]
+          - figure [ref=e417]:
+            - code [ref=e419]:
+              - generic [ref=e420]: expect(page.locator("#disabledInput")).to_be_disabled()
+              - button "Copy code" [ref=e421] [cursor=pointer]
+          - separator [ref=e423]
+          - heading "6. Check an input is readonly" [level=2] [ref=e424]
+          - heading "Selenium (Java)" [level=3] [ref=e425]
+          - figure [ref=e426]:
+            - code [ref=e428]:
+              - generic [ref=e429]: WebElement readonlyInput = driver.findElement(By.id("readonlyInput"));
+              - generic [ref=e430]: assertNotNull(readonlyInput.getAttribute("readonly"));
+              - generic [ref=e431]: // Attempt to type — it won't change
+              - generic [ref=e432]: readonlyInput.sendKeys("test");
+              - generic [ref=e433]: assertEquals("This text is readonly", readonlyInput.getAttribute("value"));
+              - button "Copy code" [ref=e434] [cursor=pointer]
+          - heading "Playwright (JS)" [level=3] [ref=e436]
+          - figure [ref=e437]:
+            - code [ref=e439]:
+              - generic [ref=e440]: await expect(page.locator("#readonlyInput")).toHaveAttribute("readonly", "");
+              - generic [ref=e441]: await page.locator("#readonlyInput").fill("test"); // no effect
+              - generic [ref=e442]: await expect(page.locator("#readonlyInput")).toHaveValue("This text is readonly");
+              - button "Copy code" [ref=e443] [cursor=pointer]
+          - heading "Playwright (Python)" [level=3] [ref=e445]
+          - figure [ref=e446]:
+            - code [ref=e448]:
+              - generic [ref=e449]: expect(page.locator("#readonlyInput")).to_have_attribute("readonly", "")
+              - generic [ref=e450]: "page.locator(\"#readonlyInput\").fill(\"test\") # no effect"
+              - generic [ref=e451]: expect(page.locator("#readonlyInput")).to_have_value("This text is readonly")
+              - button "Copy code" [ref=e452] [cursor=pointer]
+          - blockquote [ref=e454]:
+            - paragraph [ref=e455]:
+              - text: 📄
+              - strong [ref=e456]: "Also Read:"
+              - link "Top 10 Best Automation Practice Website" [ref=e457] [cursor=pointer]:
+                - /url: https://www.qaplayground.com/blog/top-10-best-automation-practice-website
+      - generic [ref=e458]:
+        - generic [ref=e459]:
+          - img [ref=e460]
+          - heading "Frequently Asked Questions" [level=2] [ref=e463]
+        - generic [ref=e464]:
+          - heading "How do I automate text input fields using Selenium WebDriver?" [level=3] [ref=e466]:
+            - button "How do I automate text input fields using Selenium WebDriver?" [ref=e467] [cursor=pointer]:
+              - text: How do I automate text input fields using Selenium WebDriver?
+              - img [ref=e468]
+          - heading "How do I clear and retype a value in an input field with Playwright?" [level=3] [ref=e471]:
+            - button "How do I clear and retype a value in an input field with Playwright?" [ref=e472] [cursor=pointer]:
+              - text: How do I clear and retype a value in an input field with Playwright?
+              - img [ref=e473]
+          - heading "How do I handle password input fields in automation testing?" [level=3] [ref=e476]:
+            - button "How do I handle password input fields in automation testing?" [ref=e477] [cursor=pointer]:
+              - text: How do I handle password input fields in automation testing?
+              - img [ref=e478]
+          - heading "How do I verify that an input field is disabled in Selenium or Playwright?" [level=3] [ref=e481]:
+            - button "How do I verify that an input field is disabled in Selenium or Playwright?" [ref=e482] [cursor=pointer]:
+              - text: How do I verify that an input field is disabled in Selenium or Playwright?
+              - img [ref=e483]
+          - heading "How do I assert the placeholder text of an input field in Playwright or Cypress?" [level=3] [ref=e486]:
+            - button "How do I assert the placeholder text of an input field in Playwright or Cypress?" [ref=e487] [cursor=pointer]:
+              - text: How do I assert the placeholder text of an input field in Playwright or Cypress?
+              - img [ref=e488]
+          - heading "How do I simulate pressing Tab or Enter after typing in an input field?" [level=3] [ref=e491]:
+            - button "How do I simulate pressing Tab or Enter after typing in an input field?" [ref=e492] [cursor=pointer]:
+              - text: How do I simulate pressing Tab or Enter after typing in an input field?
+              - img [ref=e493]
+  - region "Notifications alt+T"
+  - contentinfo [ref=e495]:
+    - contentinfo "Site footer" [ref=e496]:
+      - generic [ref=e497]:
+        - text: Footer Navigation
+        - generic [ref=e498]:
+          - generic [ref=e499]:
+            - link "QA PlayGround" [ref=e500] [cursor=pointer]:
+              - /url: /
+              - generic [ref=e501]: QA PlayGround
+            - paragraph [ref=e502]: A purpose-built practice platform for QA automation engineers. Learn Selenium, Playwright, and Cypress through hands-on interactive elements and real-world scenarios.
+            - generic [ref=e503]:
+              - generic [ref=e504]:
+                - img [ref=e505]
+                - text: Practice Elements
+              - generic [ref=e510]:
+                - img [ref=e511]
+                - text: Bank Demo
+              - generic [ref=e513]:
+                - img [ref=e514]
+                - text: Study Tracker
+            - generic "Social media links" [ref=e516]:
+              - link "YouTube" [ref=e517] [cursor=pointer]:
+                - /url: https://www.youtube.com/@qaplayground
+                - img [ref=e518]
+              - link "GitHub" [ref=e520] [cursor=pointer]:
+                - /url: https://github.com/kundalik-dev
+                - img [ref=e521]
+              - link "LinkedIn" [ref=e523] [cursor=pointer]:
+                - /url: https://www.linkedin.com/in/kundalik-jadhav
+                - img [ref=e524]
+              - link "Twitter" [ref=e526] [cursor=pointer]:
+                - /url: https://twitter.com/intent/tweet?url=https%3A%2F%2Fwww.qaplayground.com
+                - img [ref=e527]
+              - link "Telegram" [ref=e529] [cursor=pointer]:
+                - /url: https://t.me/share/url?url=https%3A%2F%2Fwww.qaplayground.com
+                - img [ref=e530]
+          - generic [ref=e532]:
+            - paragraph [ref=e533]: Platform
+            - navigation "Platform links" [ref=e534]:
+              - link "Practice Elements 22+ elements" [ref=e535] [cursor=pointer]:
+                - /url: /practice
+                - img [ref=e537]
+                - generic [ref=e542]:
+                  - text: Practice Elements
+                  - generic [ref=e543]: 22+ elements
+              - link "Bank Demo App E2E testing" [ref=e544] [cursor=pointer]:
+                - /url: /bank
+                - img [ref=e546]
+                - generic [ref=e548]:
+                  - text: Bank Demo App
+                  - generic [ref=e549]: E2E testing
+              - link "Study Tracker New" [ref=e550] [cursor=pointer]:
+                - /url: /study-tracker/dashboard
+                - img [ref=e552]
+                - generic [ref=e554]:
+                  - text: Study Tracker
+                  - generic [ref=e555]: New
+              - link "QA Tools Free" [ref=e556] [cursor=pointer]:
+                - /url: /qa-tools
+                - img [ref=e558]
+                - generic [ref=e560]:
+                  - text: QA Tools
+                  - generic [ref=e561]: Free
+              - link "QA Playground Bot Free" [ref=e562] [cursor=pointer]:
+                - /url: https://t.me/QAPlayGround_Bot
+                - img [ref=e564]
+                - generic [ref=e566]:
+                  - text: QA Playground Bot
+                  - generic [ref=e567]: Free
+              - link "QA Capture Extension" [ref=e568] [cursor=pointer]:
+                - /url: https://chromewebstore.google.com/detail/jhgkhnokloeklnagbkgkgcfphafifefg?utm_source=item-share-cb
+                - img [ref=e570]
+                - generic [ref=e575]:
+                  - text: QA Capture
+                  - generic [ref=e576]: Extension
+              - link "QA Playground Clipper Extension" [ref=e577] [cursor=pointer]:
+                - /url: https://chromewebstore.google.com/detail/jegdkegbomfbmhhimfjgacdblcoodfpd?utm_source=item-share-cb
+                - img [ref=e579]
+                - generic [ref=e584]:
+                  - text: QA Playground Clipper
+                  - generic [ref=e585]: Extension
+          - generic [ref=e586]:
+            - paragraph [ref=e587]: Learn
+            - navigation "Learn links" [ref=e588]:
+              - link "Practice Elements" [ref=e589] [cursor=pointer]:
+                - /url: /practice
+              - link "Blog & Tutorials" [ref=e590] [cursor=pointer]:
+                - /url: /blog
+              - link "Free QA Tools" [ref=e591] [cursor=pointer]:
+                - /url: /qa-tools
+              - link "AI Syllabus Generator" [ref=e592] [cursor=pointer]:
+                - /url: /study-tracker/ai-syllabus-prompt
+              - link "Automation Framework" [ref=e593] [cursor=pointer]:
+                - /url: https://github.com/kundalik5545/QA_PlayGround_Automation_Framework
+          - generic [ref=e594]:
+            - paragraph [ref=e595]: Company
+            - navigation "Company links" [ref=e596]:
+              - link "About Us" [ref=e597] [cursor=pointer]:
+                - /url: /about-us
+              - link "Contact Us" [ref=e598] [cursor=pointer]:
+                - /url: /contact-us
+              - link "Raise an Issue" [ref=e599] [cursor=pointer]:
+                - /url: /raise-issue
+              - link "Privacy Policy" [ref=e600] [cursor=pointer]:
+                - /url: /privacy-policy
+              - link "Login" [ref=e601] [cursor=pointer]:
+                - /url: /login
+            - generic [ref=e602]:
+              - paragraph [ref=e603]: "*No account required. Creating a login is entirely optional and is only necessary if you wish to sync your progress in the Study Tracker."
+              - paragraph [ref=e604]: "*Your data is stored locally within your browser for maximum privacy."
+        - generic [ref=e605]:
+          - generic [ref=e606]: © 2026 QA Playground. All rights reserved.
+          - generic [ref=e607]:
+            - text: Built for QA Engineers by
+            - link "Kundalik Jadhav" [ref=e608] [cursor=pointer]:
+              - /url: https://github.com/kundalik-dev
+  - alert [ref=e609]
+```

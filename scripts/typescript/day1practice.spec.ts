@@ -2,45 +2,34 @@
  * Day 1 Practice — TypeScript version
  * Run: npx ts-node day1_practice.ts
  *
- * Key differences from Python:
- *   - Everything is async/await
- *   - camelCase method names (goBack, newPage, etc.)
- *   - Option objects instead of keyword args
- *   - Regex literals instead of re.compile()
- *   - No `with` statement — use try/finally
  */
 
-import { test, expect, chromium } from '@playwright/test';
+// Import the test and expect functions from Playwright's test module
+import { test, expect } from '@playwright/test';
 
-test('Check Example Page (manual)', async () => {
+// Describe groups related tests under a named suite
+test.describe('Day 01 – Playwright Basics', () => {
 
-  const browser = await chromium.launch();
-  /*const browser = await chromium.launch({ headless: true }); */
-  const context = await browser.newContext();
-  const page = await context.newPage();
+  /* 
+  *  Desc - Test to check the page title of the base URL
+  *  Assertion - The page title should contain the word "QA Playground"
+  * 
+  */
+  test('page has correct title', async ({ page }) => {
+    await page.goto('/');
+    await expect(page).toHaveTitle(/QA Playground/);
+  });
 
-  try {
-    await page.goto('https://playwright.dev/');
 
-    await expect(page).toHaveTitle(/Playwright/);
-    console.log('✅ Title assertion passed');
-
-    await page.getByRole('link', { name: 'Get started' }).click();
-
-    await expect(page).toHaveURL(/.*\/docs\/intro/);
-    console.log('✅ URL assertion passed');
-
-    await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
-    console.log('✅ Heading visible assertion passed');
-
-    await page.goBack();
-    await expect(page).toHaveURL('https://playwright.dev/');
-    console.log('✅ Navigation back passed');
-
-  } finally {
-    await browser.close();
-  }
-  console.log('\n🎉 Day 1 practice complete!');
+  /* 
+  *  Desc - Test to check navigation to the Practie page
+  *  Assertion - The URL should change to the docs path
+  * 
+  */
+  test('navigation to Practice page works', async ({ page }) => {
+    await page.goto('/practice');
+    await expect(page).toHaveURL(/\/practice/);
+  });
 
 });
 
