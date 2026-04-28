@@ -43,5 +43,5 @@
     "moduleDetection": "force",
     "skipLibCheck": true,
   },
-  "include": ["scripts/typescript"]
+  "include": ["scripts/Demo-Learn"]
 }
