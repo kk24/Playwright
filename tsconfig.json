@@ -43,5 +43,5 @@
     "moduleDetection": "force",
     "skipLibCheck": true,
   },
-  "include": ["scripts/Demo-Learn"]
+  "include": ["scripts/Demo-Learn", "pages/BankLoginPage_DemoLearn.ts"]
 }

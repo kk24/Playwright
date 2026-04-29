@@ -6,7 +6,7 @@
 
 // Import the test and expect functions from Playwright's test module
 import { test, expect } from '@playwright/test';
-import { BankLoginPage } from './BankLoginPage';
+import { BankLoginPage } from '../../pages/BankLoginPage_DemoLearn';
 
 
 

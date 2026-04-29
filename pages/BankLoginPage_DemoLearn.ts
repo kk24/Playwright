@@ -13,16 +13,18 @@ export class BankLoginPage {
     readonly usernameInput: Locator;
     readonly passwordInput: Locator;
     readonly loginButton: Locator;
+    readonly clearButton: Locator;
 
     readonly userNameErrorMessage: Locator;
     readonly passwordErrorMessage: Locator;
     readonly alertMessage: Locator;
 
 
-    constructor(private readonly page: Page) {
+    constructor(public readonly page: Page) {
         this.usernameInput = page.locator('[id="username"]');
         this.passwordInput = page.locator('[id="password"]');
         this.loginButton = page.locator('button[type="submit"]');
+        this.clearButton = page.locator('[id="clear-btn"]');
 
         this.userNameErrorMessage = page.locator('[id="username-error"]');
         this.passwordErrorMessage = page.locator('[id="password-error"]');
@@ -40,6 +42,11 @@ export class BankLoginPage {
         await this.usernameInput.fill(username);
         await this.passwordInput.fill(password);
         await this.loginButton.click();
+    }
+
+    // Method to clear the input fields
+    async clearFields() {
+        await this.clearButton.click();
     }
 
 }
