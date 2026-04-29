@@ -11,18 +11,33 @@ export default defineConfig({
     screenshot: 'only-on-failure', // capture screenshot on failure
   },
 
-//testDir: './scripts/typescript',
-//baseURL: 'https://www.qaplayground.com' // baseURL for relative paths in tests
- 
+  // Define projects for different browsers and configurations
   projects: [
       { 
         name: 'Demo-Learn',
-        testDir: './scripts/typescript', 
-        use: { ...devices['Desktop Chrome'], } 
+        testDir: './scripts/Demo-Learn', 
+        use: { ...devices['Desktop Chrome'], 
+        baseURL: 'https://www.qaplayground.com'
+        } 
       },
 
-      // { name: 'firefox',  
-      //   use: { ...devices['Desktop Firefox'], } 
+      // { 
+      //   name: 'Demo-Learn-Firefox',
+      //   testDir: './scripts/Demo-Learn', 
+      //   use: { ...devices['Desktop Firefox'], 
+      //   baseURL: 'https://www.qaplayground.com'
+      //   } 
       // },
+      
+      { 
+        name: 'CapstoneProject1-ParkingCalculator',
+        testDir: './scripts/CapstoneProjects/ParkingCalculator', 
+        use: { ...devices['Desktop Chrome'], 
+        baseURL: 'https://www.shino.de/parkcalc'
+        } 
+      },
+    
+
+
     ]
 });

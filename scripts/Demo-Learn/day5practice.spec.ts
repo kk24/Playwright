@@ -1,6 +1,6 @@
 /**
- * Day 4 Practice — Page Object Model - Test
- * Run: npx playwright test day3_practice.spec.ts --reporter=list
+ * Day 5 Practice — Fixtures and Test Hooks
+ * Run: npx playwright test day5practice.spec.ts --reporter=list
  *
  */
 

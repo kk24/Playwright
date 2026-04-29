@@ -18,6 +18,7 @@ export class BankLoginPage {
     readonly passwordErrorMessage: Locator;
     readonly alertMessage: Locator;
 
+
     constructor(private readonly page: Page) {
         this.usernameInput = page.locator('[id="username"]');
         this.passwordInput = page.locator('[id="password"]');
@@ -25,10 +26,12 @@ export class BankLoginPage {
 
         this.userNameErrorMessage = page.locator('[id="username-error"]');
         this.passwordErrorMessage = page.locator('[id="password-error"]');
-        this.alertMessage = page.locator('[id="alert-message"]');
+        this.alertMessage = page.locator('[id="login-alert"]');
+ 
+
     }
 
-    async goto() {  
+    async goto(): Promise<void> {  
         await this.page.goto('/bank');
     }
 
