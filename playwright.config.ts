@@ -29,6 +29,9 @@ export default defineConfig({
       //   } 
       // },
       
+      //
+      // ------- Capstone Project 1 - Parking Cost Calculator -------
+      // 
       { 
         name: 'CapstoneProject1-ParkingCalculator',
         testDir: './scripts/CapstoneProjects/ParkingCalculator', 
