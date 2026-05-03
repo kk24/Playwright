@@ -1,12 +1,12 @@
 /**
- * Network Interception & Mocking in Playwright
- * Using JSONPlaceholder — https://jsonplaceholder.typicode.com
- * Run: npx playwright test networkInterception.spec.ts --reporter=list
+ * Day 7 Practice — Visual & Screenshot Testing
+ * Run: npx playwright test day7practice.spec.ts --reporter=list
+ *
  */
 
 import { test, expect } from '@playwright/test';
 
-test.describe('Network Interception & Mocking', () => {
+test.describe('Visual & Screenshot Testing', () => {
 
   /**
    * Test 1 — Mock a GET response
