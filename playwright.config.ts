@@ -8,7 +8,7 @@ export default defineConfig({
   retries: 1, // retries for failed tests
   reporter: [
       ['html', { open: 'never' }], // generate HTML report
-      ['junit', { outputFile: 'test-results.xml', suiteName: '{projectName} - {file}', }] // generate JUnit XML report
+      ['junit', { outputFile: 'test-results.xml', includeProjectInTestName: true, }] // generate JUnit XML report
   ],
   use: {
     headless: true,   // set false if you want to see the browser
