@@ -23,7 +23,7 @@ test.describe('Day 07 – Visual Testing', () => {
     await page.goto('/');
 
     // Capture only the navigation component
-    const nav = page.locator('nav');
+    const nav = page.locator('[x-path="/html/body/header/nav"]');
     await expect(nav).toHaveScreenshot('nav.png');
   });
 
@@ -37,15 +37,15 @@ test.describe('Day 07 – Visual Testing', () => {
     });
   });
 
-  test('save screenshot as file artifact', async ({ page }, testInfo) => {
-    await page.goto('/');
+  // test('save screenshot as file artifact', async ({ page }, testInfo) => {
+  //   await page.goto('/');
 
-    // Attach screenshot to test report
-    const screenshot = await page.screenshot({ fullPage: true });
-    await testInfo.attach('homepage-screenshot', {
-      body: screenshot,
-      contentType: 'image/png',
-    });
-  });
+  //   // Attach screenshot to test report
+  //   const screenshot = await page.screenshot({ fullPage: true });
+  //   await testInfo.attach('homepage-screenshot', {
+  //     body: screenshot,
+  //     contentType: 'image/png',
+  //   });
+  // });
 
 });
