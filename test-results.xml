@@ -1,0 +1,26 @@
+<testsuites id="" name="" tests="10" failures="0" skipped="0" errors="0" time="73.75015100000002">
+<testsuite name="scripts/Demo-Learn/day8practice.spec.ts" timestamp="2026-05-04T04:09:28.364Z" hostname="Demo-Learn" tests="5" failures="0" skipped="0" time="34.29" errors="0">
+<testcase name="Day 08 – Parallel Testing &amp; Reporting › should display error for empty username" classname="scripts/Demo-Learn/day8practice.spec.ts" time="9.579">
+</testcase>
+<testcase name="Day 08 – Parallel Testing &amp; Reporting › should display error for empty password" classname="scripts/Demo-Learn/day8practice.spec.ts" time="9.692">
+</testcase>
+<testcase name="Day 08 – Parallel Testing &amp; Reporting › should display errors for empty username and password" classname="scripts/Demo-Learn/day8practice.spec.ts" time="5.144">
+</testcase>
+<testcase name="Day 08 – Parallel Testing &amp; Reporting › should display alert for invalid credentials" classname="scripts/Demo-Learn/day8practice.spec.ts" time="5.431">
+</testcase>
+<testcase name="Day 08 – Parallel Testing &amp; Reporting › should login successfully with valid credentials &amp; display dashboard" classname="scripts/Demo-Learn/day8practice.spec.ts" time="4.444">
+</testcase>
+</testsuite>
+<testsuite name="scripts/Demo-Learn/day8practice.spec.ts" timestamp="2026-05-04T04:09:28.364Z" hostname="Demo-Learn-Firefox" tests="5" failures="0" skipped="0" time="64.484" errors="0">
+<testcase name="Day 08 – Parallel Testing &amp; Reporting › should display error for empty username" classname="scripts/Demo-Learn/day8practice.spec.ts" time="16.31">
+</testcase>
+<testcase name="Day 08 – Parallel Testing &amp; Reporting › should display error for empty password" classname="scripts/Demo-Learn/day8practice.spec.ts" time="17.126">
+</testcase>
+<testcase name="Day 08 – Parallel Testing &amp; Reporting › should display errors for empty username and password" classname="scripts/Demo-Learn/day8practice.spec.ts" time="11.012">
+</testcase>
+<testcase name="Day 08 – Parallel Testing &amp; Reporting › should display alert for invalid credentials" classname="scripts/Demo-Learn/day8practice.spec.ts" time="11.593">
+</testcase>
+<testcase name="Day 08 – Parallel Testing &amp; Reporting › should login successfully with valid credentials &amp; display dashboard" classname="scripts/Demo-Learn/day8practice.spec.ts" time="8.443">
+</testcase>
+</testsuite>
+</testsuites>
