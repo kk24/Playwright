@@ -2,6 +2,11 @@
 
 This document outlines the test scenarios for the Parking Calculator application.
 
+#### Note: 
+    ** - Since the app does not handle or validate date/time formats, corresponding test scenarios are intentionally omitted. **
+    ** - All testing will be limited to the Chrome browser. **
+    ** - Test scenarios are limited to Valet & Short-term parking. **
+
 
 ## Scenario 1: Valet Parking (less than 5 hours)
 - **Entry Time:** 09:00 AM
@@ -56,7 +61,6 @@ This document outlines the test scenarios for the Parking Calculator application
 - **Entry Time:** 09:00 AM (Day 1)
 - **Exit Time:** 10:30 AM (Day 2)
 - **Expected Cost:** $27.00 ($24.00 daily maximum + $2.00 first hour; $1.00 each additional 1/2 hour)
-
 
 ## Scenario 11: Invalid Input (Exit Before Entry)
 - **Entry Time:** 05:00 PM

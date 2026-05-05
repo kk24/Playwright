@@ -7,6 +7,7 @@
 
 import { test as base, expect, Page } from '@playwright/test';
 import { BankLoginPage } from '../pages/BankLoginPage_DemoLearn';
+import { ParkingCostCalculatorPage } from '../pages/CalcPage_ParkingCostCalculator';
 
 
 //
@@ -26,6 +27,26 @@ export const test = base.extend<BankLoginPageFixture>({
         await page.close();
     },
 });
+
+
+//
+// Fixture for ParkingCostCalculatorPage
+//
+type ParkingCostCalculatorPageFixture = {
+    parkingCostCalculator: ParkingCostCalculatorPage;
+};
+
+export const parkingPageTest = base.extend<ParkingCostCalculatorPageFixture>({
+    parkingCostCalculator: async ({ page }, use) => {
+        const parkingCostCalculator = new ParkingCostCalculatorPage(page);
+        await parkingCostCalculator.goto();
+        await use(parkingCostCalculator);
+
+        // tear down code 
+        await page.close();
+    }
+});
+
 
 
 
