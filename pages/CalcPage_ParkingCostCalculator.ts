@@ -24,14 +24,13 @@ export class ParkingCostCalculatorPage {
     readonly leavingTimeInput: Locator;
     readonly leavingAmPmRadioBtn  : (amPm: 'AM' | 'PM') => Locator;
     
-    // estimated parking cost locator
-    readonly estimatedCostLabel: Locator;
+    // result label locator
+    readonly resultLabel: Locator;
 
     // calculate button locator
     readonly calculateButton: Locator;
 
-    // error message locators
-    readonly errorMessage: Locator
+
 
 
     // Initialize locators in the constructor
@@ -51,9 +50,9 @@ export class ParkingCostCalculatorPage {
         this.leavingAmPmRadioBtn = (amPm) => page.locator(`input[name="LeavingTimeAMPM"][value="${amPm}"]`);
         
         // estimated parking cost, calculate button and error message locators
-        this.calculateButton = page.locator('[id="calculateCost"]');
-        this.estimatedCostLabel = page.locator('[xpath="/html/body/form/table/tbody/tr[4]/td[2]/span[1]/b"]');
-        this.errorMessage = page.locator('[xpath="/html/body/form/table/tbody/tr[4]/td[2]/b"]');
+        this.calculateButton = page.getByRole('button', { name: 'Calculate' });
+        this.resultLabel = page.locator('td.SubHead b');
+        //this.errorMessage = page.locator('[xpath="/html/body/form/table/tbody/tr[4]/td[2]/b"]');
 
     }
 

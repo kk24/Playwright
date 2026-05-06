@@ -1,27 +1,29 @@
-<testsuites id="" name="" tests="1" failures="1" skipped="0" errors="0" time="76.84362">
-<testsuite name="scripts/CapstoneProjects/ParkingCalculator/parking-calc.spec.ts" timestamp="2026-05-06T00:19:37.318Z" hostname="CapstoneProject1-ParkingCalculator" tests="1" failures="1" skipped="0" time="61.964" errors="0">
-<testcase name="[CapstoneProject1-ParkingCalculator] Parking Cost Calculator Test Suite › Scenario 1: Valet Parking (less than 5 hours)" classname="scripts/CapstoneProjects/ParkingCalculator/parking-calc.spec.ts" time="61.964">
+<testsuites id="" name="" tests="1" failures="1" skipped="0" errors="0" time="40.85668">
+<testsuite name="scripts/CapstoneProjects/ParkingCalculator/parking-calc.spec.ts" timestamp="2026-05-06T04:21:44.447Z" hostname="CapstoneProject1-ParkingCalculator" tests="1" failures="1" skipped="0" time="22.814" errors="0">
+<testcase name="[CapstoneProject1-ParkingCalculator] Parking Cost Calculator Test Suite › Scenario 1: Valet Parking (less than 5 hours)" classname="scripts/CapstoneProjects/ParkingCalculator/parking-calc.spec.ts" time="22.814">
 <failure message="parking-calc.spec.ts:63:16 Scenario 1: Valet Parking (less than 5 hours)" type="FAILURE">
 <![CDATA[  [CapstoneProject1-ParkingCalculator] › scripts/CapstoneProjects/ParkingCalculator/parking-calc.spec.ts:63:16 › Parking Cost Calculator Test Suite › Scenario 1: Valet Parking (less than 5 hours) 
 
-    Test timeout of 30000ms exceeded.
+    Error: expect(locator).toBeVisible() failed
 
-    Error: locator.selectOption: Target page, context or browser has been closed
+    Locator: locator('[xpath="/html/body/form/table/tbody/tr[4]/td[2]/span[1]/b"]')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
     Call log:
-      - waiting for getByRole('combobox', { name: 'parkingLot' })
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for locator('[xpath="/html/body/form/table/tbody/tr[4]/td[2]/span[1]/b"]')
 
 
-       at pages/CalcPage_ParkingCostCalculator.ts:74
-
-      72 |             ): Promise<void> {
-      73 |         
-    > 74 |         await this.parkingLotDropDown.selectOption(parkingLot);
-         |                                       ^
-      75 |         await this.entryDateInput.fill(entryDate);
-      76 |         await this.entryTimeInput.fill(entryTime);
-      77 |         await this.entryAmPmRadioBtn(entryAmPm).click(); 
-        at ParkingCostCalculatorPage.calculateParkingCost (/home/tanaya/playwright/pages/CalcPage_ParkingCostCalculator.ts:74:39)
-        at /home/tanaya/playwright/scripts/CapstoneProjects/ParkingCalculator/parking-calc.spec.ts:66:33
+      67 |                                                      '05/06/2026', '09:00', 'AM',
+      68 |                                                      '05/06/2026', '12:00', 'PM');
+    > 69 |     await expect(parkingCostCalculator.estimatedCostLabel).toBeVisible();
+         |                                                            ^
+      70 |     await expect(parkingCostCalculator.estimatedCostLabel).toHaveText('$ 12.00');
+      71 | });
+      72 |
+        at /home/tanaya/playwright/scripts/CapstoneProjects/ParkingCalculator/parking-calc.spec.ts:69:60
 
     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
     test-results/parking-calc-Parking-Cost--e7ebb--Parking-less-than-5-hours--CapstoneProject1-ParkingCalculator/test-failed-1.png
@@ -37,26 +39,26 @@
 
     Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
 
-    Test timeout of 30000ms exceeded.
+    Error: expect(locator).toBeVisible() failed
 
-    Error: locator.selectOption: Target page, context or browser has been closed
+    Locator: locator('[xpath="/html/body/form/table/tbody/tr[4]/td[2]/span[1]/b"]')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
     Call log:
-      - waiting for getByRole('combobox', { name: 'parkingLot' })
-        - waiting for" https://www.shino.de/parkcalc/" navigation to finish...
-        - navigated to "https://www.shino.de/parkcalc/"
+      - Expect "toBeVisible" with timeout 5000ms
+      - waiting for locator('[xpath="/html/body/form/table/tbody/tr[4]/td[2]/span[1]/b"]')
 
 
-       at pages/CalcPage_ParkingCostCalculator.ts:74
-
-      72 |             ): Promise<void> {
-      73 |         
-    > 74 |         await this.parkingLotDropDown.selectOption(parkingLot);
-         |                                       ^
-      75 |         await this.entryDateInput.fill(entryDate);
-      76 |         await this.entryTimeInput.fill(entryTime);
-      77 |         await this.entryAmPmRadioBtn(entryAmPm).click(); 
-        at ParkingCostCalculatorPage.calculateParkingCost (/home/tanaya/playwright/pages/CalcPage_ParkingCostCalculator.ts:74:39)
-        at /home/tanaya/playwright/scripts/CapstoneProjects/ParkingCalculator/parking-calc.spec.ts:66:33
+      67 |                                                      '05/06/2026', '09:00', 'AM',
+      68 |                                                      '05/06/2026', '12:00', 'PM');
+    > 69 |     await expect(parkingCostCalculator.estimatedCostLabel).toBeVisible();
+         |                                                            ^
+      70 |     await expect(parkingCostCalculator.estimatedCostLabel).toHaveText('$ 12.00');
+      71 | });
+      72 |
+        at /home/tanaya/playwright/scripts/CapstoneProjects/ParkingCalculator/parking-calc.spec.ts:69:60
 
     attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
     test-results/parking-calc-Parking-Cost--e7ebb--Parking-less-than-5-hours--CapstoneProject1-ParkingCalculator-retry1/test-failed-1.png

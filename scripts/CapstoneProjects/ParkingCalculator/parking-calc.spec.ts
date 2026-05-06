@@ -66,8 +66,8 @@ parkingPageTest('Scenario 1: Valet Parking (less than 5 hours)', async ({ parkin
     await parkingCostCalculator.calculateParkingCost('Valet Parking', 
                                                      '05/06/2026', '09:00', 'AM',
                                                      '05/06/2026', '12:00', 'PM');
-    await expect(parkingCostCalculator.estimatedCostLabel).toBeVisible();
-    await expect(parkingCostCalculator.estimatedCostLabel).toHaveText('$ 12.00');
+    await expect(parkingCostCalculator.resultLabel).toBeVisible();
+    await expect(parkingCostCalculator.resultLabel).toHaveText('$ 12.00');
 });
 
 
