@@ -59,7 +59,7 @@ parkingPageTest.afterAll(async () => {
 // =============================================================================================
 
 
-// Test#1 - Empty Credentials (Username only)
+// Scenario 1: Valet Parking (less than 5 hours)
 parkingPageTest('Scenario 1: Valet Parking (less than 5 hours)', async ({ parkingCostCalculator }) => {
     //await parkingCostCalculator.goto();
     console.log('Entry Time: 09:00 AM | Exit Time: 12:00 PM | Expected Cost: $12.00 ($12 for five hours or less)');

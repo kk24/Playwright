@@ -1,26 +1,105 @@
-<testsuites id="" name="" tests="10" failures="0" skipped="0" errors="0" time="71.40634200000001">
-<testsuite name="scripts/Demo-Learn/day8practice.spec.ts" timestamp="2026-05-04T04:26:56.515Z" hostname="Demo-Learn" tests="5" failures="0" skipped="0" time="30.5" errors="0">
-<testcase name="[Demo-Learn] Day 08 – Parallel Testing &amp; Reporting › should display error for empty username" classname="scripts/Demo-Learn/day8practice.spec.ts" time="7.851">
-</testcase>
-<testcase name="[Demo-Learn] Day 08 – Parallel Testing &amp; Reporting › should display error for empty password" classname="scripts/Demo-Learn/day8practice.spec.ts" time="7.861">
-</testcase>
-<testcase name="[Demo-Learn] Day 08 – Parallel Testing &amp; Reporting › should display errors for empty username and password" classname="scripts/Demo-Learn/day8practice.spec.ts" time="5.05">
-</testcase>
-<testcase name="[Demo-Learn] Day 08 – Parallel Testing &amp; Reporting › should display alert for invalid credentials" classname="scripts/Demo-Learn/day8practice.spec.ts" time="5.448">
-</testcase>
-<testcase name="[Demo-Learn] Day 08 – Parallel Testing &amp; Reporting › should login successfully with valid credentials &amp; display dashboard" classname="scripts/Demo-Learn/day8practice.spec.ts" time="4.29">
-</testcase>
-</testsuite>
-<testsuite name="scripts/Demo-Learn/day8practice.spec.ts" timestamp="2026-05-04T04:26:56.515Z" hostname="Demo-Learn-Firefox" tests="5" failures="0" skipped="0" time="64.122" errors="0">
-<testcase name="[Demo-Learn-Firefox] Day 08 – Parallel Testing &amp; Reporting › should display error for empty username" classname="scripts/Demo-Learn/day8practice.spec.ts" time="14.56">
-</testcase>
-<testcase name="[Demo-Learn-Firefox] Day 08 – Parallel Testing &amp; Reporting › should display error for empty password" classname="scripts/Demo-Learn/day8practice.spec.ts" time="17.276">
-</testcase>
-<testcase name="[Demo-Learn-Firefox] Day 08 – Parallel Testing &amp; Reporting › should display errors for empty username and password" classname="scripts/Demo-Learn/day8practice.spec.ts" time="11.32">
-</testcase>
-<testcase name="[Demo-Learn-Firefox] Day 08 – Parallel Testing &amp; Reporting › should display alert for invalid credentials" classname="scripts/Demo-Learn/day8practice.spec.ts" time="11.336">
-</testcase>
-<testcase name="[Demo-Learn-Firefox] Day 08 – Parallel Testing &amp; Reporting › should login successfully with valid credentials &amp; display dashboard" classname="scripts/Demo-Learn/day8practice.spec.ts" time="9.63">
+<testsuites id="" name="" tests="1" failures="1" skipped="0" errors="0" time="76.84362">
+<testsuite name="scripts/CapstoneProjects/ParkingCalculator/parking-calc.spec.ts" timestamp="2026-05-06T00:19:37.318Z" hostname="CapstoneProject1-ParkingCalculator" tests="1" failures="1" skipped="0" time="61.964" errors="0">
+<testcase name="[CapstoneProject1-ParkingCalculator] Parking Cost Calculator Test Suite › Scenario 1: Valet Parking (less than 5 hours)" classname="scripts/CapstoneProjects/ParkingCalculator/parking-calc.spec.ts" time="61.964">
+<failure message="parking-calc.spec.ts:63:16 Scenario 1: Valet Parking (less than 5 hours)" type="FAILURE">
+<![CDATA[  [CapstoneProject1-ParkingCalculator] › scripts/CapstoneProjects/ParkingCalculator/parking-calc.spec.ts:63:16 › Parking Cost Calculator Test Suite › Scenario 1: Valet Parking (less than 5 hours) 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.selectOption: Target page, context or browser has been closed
+    Call log:
+      - waiting for getByRole('combobox', { name: 'parkingLot' })
+
+
+       at pages/CalcPage_ParkingCostCalculator.ts:74
+
+      72 |             ): Promise<void> {
+      73 |         
+    > 74 |         await this.parkingLotDropDown.selectOption(parkingLot);
+         |                                       ^
+      75 |         await this.entryDateInput.fill(entryDate);
+      76 |         await this.entryTimeInput.fill(entryTime);
+      77 |         await this.entryAmPmRadioBtn(entryAmPm).click(); 
+        at ParkingCostCalculatorPage.calculateParkingCost (/home/tanaya/playwright/pages/CalcPage_ParkingCostCalculator.ts:74:39)
+        at /home/tanaya/playwright/scripts/CapstoneProjects/ParkingCalculator/parking-calc.spec.ts:66:33
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/parking-calc-Parking-Cost--e7ebb--Parking-less-than-5-hours--CapstoneProject1-ParkingCalculator/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/parking-calc-Parking-Cost--e7ebb--Parking-less-than-5-hours--CapstoneProject1-ParkingCalculator/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/parking-calc-Parking-Cost--e7ebb--Parking-less-than-5-hours--CapstoneProject1-ParkingCalculator/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.selectOption: Target page, context or browser has been closed
+    Call log:
+      - waiting for getByRole('combobox', { name: 'parkingLot' })
+        - waiting for" https://www.shino.de/parkcalc/" navigation to finish...
+        - navigated to "https://www.shino.de/parkcalc/"
+
+
+       at pages/CalcPage_ParkingCostCalculator.ts:74
+
+      72 |             ): Promise<void> {
+      73 |         
+    > 74 |         await this.parkingLotDropDown.selectOption(parkingLot);
+         |                                       ^
+      75 |         await this.entryDateInput.fill(entryDate);
+      76 |         await this.entryTimeInput.fill(entryTime);
+      77 |         await this.entryAmPmRadioBtn(entryAmPm).click(); 
+        at ParkingCostCalculatorPage.calculateParkingCost (/home/tanaya/playwright/pages/CalcPage_ParkingCostCalculator.ts:74:39)
+        at /home/tanaya/playwright/scripts/CapstoneProjects/ParkingCalculator/parking-calc.spec.ts:66:33
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/parking-calc-Parking-Cost--e7ebb--Parking-less-than-5-hours--CapstoneProject1-ParkingCalculator-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/parking-calc-Parking-Cost--e7ebb--Parking-less-than-5-hours--CapstoneProject1-ParkingCalculator-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/parking-calc-Parking-Cost--e7ebb--Parking-less-than-5-hours--CapstoneProject1-ParkingCalculator-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[================================================
+Parking Cost Calculator Test Suite
+================================================
+Parking Cost Calculator page is loaded
+Entry Time: 09:00 AM | Exit Time: 12:00 PM | Expected Cost: $12.00 ($12 for five hours or less)
+Parking Cost Calculator page is reloaded for the next test
+================================================
+Parking Cost Calculator Test Suite Completed
+================================================
+
+[[ATTACHMENT|test-results/parking-calc-Parking-Cost--e7ebb--Parking-less-than-5-hours--CapstoneProject1-ParkingCalculator/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/parking-calc-Parking-Cost--e7ebb--Parking-less-than-5-hours--CapstoneProject1-ParkingCalculator/trace.zip]]
+================================================
+Parking Cost Calculator Test Suite
+================================================
+Parking Cost Calculator page is loaded
+Entry Time: 09:00 AM | Exit Time: 12:00 PM | Expected Cost: $12.00 ($12 for five hours or less)
+Parking Cost Calculator page is reloaded for the next test
+================================================
+Parking Cost Calculator Test Suite Completed
+================================================
+
+[[ATTACHMENT|test-results/parking-calc-Parking-Cost--e7ebb--Parking-less-than-5-hours--CapstoneProject1-ParkingCalculator-retry1/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/parking-calc-Parking-Cost--e7ebb--Parking-less-than-5-hours--CapstoneProject1-ParkingCalculator-retry1/trace.zip]]
+]]>
+</system-out>
 </testcase>
 </testsuite>
 </testsuites>

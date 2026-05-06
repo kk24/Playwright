@@ -41,7 +41,7 @@ export default defineConfig({
         name: 'CapstoneProject1-ParkingCalculator',
         testDir: './scripts/CapstoneProjects/ParkingCalculator', 
         use: { ...devices['Desktop Chrome'], 
-        baseURL: 'https://www.shino.de/parkcalc'
+        baseURL: 'https://www.shino.de'
         } 
       },
     

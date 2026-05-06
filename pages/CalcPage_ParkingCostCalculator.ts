@@ -38,16 +38,16 @@ export class ParkingCostCalculatorPage {
     constructor(public readonly page: Page) {
 
         // parking lot dropdown locator
-        this.parkingLotDropDown = page.getByRole('combobox', { name: 'parkingLot' }); 
+        this.parkingLotDropDown = page.locator('#ParkingLot') 
           
         // entry date, time & AM/PM locators
-        this.entryDateInput = page.getByRole('textbox', { name: 'StartingDate' }); 
-        this.entryTimeInput = page.getByRole('textbox', { name: 'StartingTime' });
+        this.entryDateInput = page.locator('#StartingDate');
+        this.entryTimeInput = page.locator('#StartingTime');
         this.entryAmPmRadioBtn = (amPm) => page.locator(`input[name="StartingTimeAMPM"][value="${amPm}"]`);
 
         // leaving date and time locators
-        this.leavingDateInput = page.getByRole('textbox', { name: 'LeavingDate' });
-        this.leavingTimeInput = page.getByRole('textbox', { name: 'LeavingTime' });
+        this.leavingDateInput = page.locator('#LeavingDate');
+        this.leavingTimeInput = page.locator('#LeavingTime');
         this.leavingAmPmRadioBtn = (amPm) => page.locator(`input[name="LeavingTimeAMPM"][value="${amPm}"]`);
         
         // estimated parking cost, calculate button and error message locators
@@ -58,7 +58,7 @@ export class ParkingCostCalculatorPage {
     }
 
     async goto(): Promise<void> {  
-        await this.page.goto('/'); // Navigates to the baseURL defined in the config
+        await this.page.goto('/parkcalc/'); // Navigates to the baseURL defined in the config
     }
 
     // Method to perform calculation action
