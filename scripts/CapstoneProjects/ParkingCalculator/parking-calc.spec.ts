@@ -24,7 +24,7 @@ let sharedPage: Page | undefined; // Initialize as undefined
 parkingPageTest.beforeAll(async () => {
     console.log('================================================');
     console.log('Parking Cost Calculator Test Suite');
-    console.log('================================================');
+    console.log('================================================\n');
 });
 
 // ✅ Hook 2 — beforeEach
@@ -32,14 +32,14 @@ parkingPageTest.beforeAll(async () => {
 parkingPageTest.beforeEach(async ({parkingCostCalculator}) => {
     parkingCostCalculator.goto(); // Ensure we start from the login page before each test
     await expect(parkingCostCalculator.page).toHaveURL(/\/parkcalc/); // Verify we are on the parking cost calculator page
-    console.log('Parking Cost Calculator page is loaded');
+    console.log('Parking Cost Calculator page is loaded\n');
 });
 
 // ✅ Hook 3 — afterEach
 // afterEach hook runs after each test in the suite
 parkingPageTest.afterEach(async ({parkingCostCalculator}) => {
     await parkingCostCalculator.page.reload(); // Reload the page before each test
-    console.log('Parking Cost Calculator page is reloaded for the next test');
+    console.log('Parking Cost Calculator page is reloaded for the next test\n');
 });
 
 // ✅ Hook 4 — afterAll
@@ -47,7 +47,7 @@ parkingPageTest.afterEach(async ({parkingCostCalculator}) => {
 parkingPageTest.afterAll(async () => {
     console.log('================================================');
     console.log('Parking Cost Calculator Test Suite Completed');
-    console.log('================================================');
+    console.log('================================================\n');
     if (sharedPage) {
         await sharedPage.close(); // Close the page after all tests are done
     }
@@ -62,7 +62,7 @@ parkingPageTest.afterAll(async () => {
 // Scenario 1: Valet Parking (less than 5 hours)
 parkingPageTest('Scenario 1: Valet Parking (less than 5 hours)', async ({ parkingCostCalculator }) => {
     //await parkingCostCalculator.goto();
-    console.log('Entry Time: 09:00 AM | Exit Time: 12:00 PM | Expected Cost: $12.00 ($12 for five hours or less)');
+    console.log('Scenario 1: Entry Time: 09:00 AM | Exit Time: 12:00 PM | Expected Cost: $12.00 ($12 for five hours or less)\n');
     await parkingCostCalculator.calculateParkingCost('Valet Parking', 
                                                      '05/06/2026', '09:00', 'AM',
                                                      '05/06/2026', '12:00', 'PM');

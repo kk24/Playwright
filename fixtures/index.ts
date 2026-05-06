@@ -43,7 +43,7 @@ export const parkingPageTest = base.extend<ParkingCostCalculatorPageFixture>({
         await use(parkingCostCalculator);
 
         // tear down code 
-        await page.close();
+        //await page.close();
     }
 });
 

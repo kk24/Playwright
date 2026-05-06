@@ -51,7 +51,7 @@ export class ParkingCostCalculatorPage {
         
         // estimated parking cost, calculate button and error message locators
         this.calculateButton = page.getByRole('button', { name: 'Calculate' });
-        this.resultLabel = page.locator('td.SubHead b');
+        this.resultLabel = page.locator('span.SubHead b'); 
         //this.errorMessage = page.locator('[xpath="/html/body/form/table/tbody/tr[4]/td[2]/b"]');
 
     }
@@ -79,7 +79,13 @@ export class ParkingCostCalculatorPage {
         await this.leavingTimeInput.fill(leavingTime);
         await this.leavingAmPmRadioBtn(leavingAmPm).click();
 
-        await this.calculateButton.click();
+            // ✅ Wait for navigation AND click simultaneously
+        await Promise.all([
+        this.page.waitForLoadState('load'),
+        this.calculateButton.click()
+        ]);            
+
+        await this.resultLabel.waitFor({ state: 'visible' });
     }
 
 }
