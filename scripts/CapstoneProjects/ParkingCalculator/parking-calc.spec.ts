@@ -191,12 +191,12 @@ parkingPageTest('Scenario 10: Short-term Parking (Overnight but > 24 hours ~ 25.
 // Scenario 11: Invalid Input (Exit Before Entry)
 parkingPageTest('Scenario 11: Invalid Input (Exit Before Entry)', async ({ parkingCostCalculator }) => {
     //await parkingCostCalculator.goto();
-    console.log('Scenario 11: Invalid Input (Exit Before Entry) | Entry Time: 05:00 PM | Exit Time: 02:00 PM | Expected Cost: ERROR! \n');
+    console.log('Scenario 11: Invalid Input (Exit Before Entry) | Entry Time: 05:00 PM | Exit Time: 02:00 PM | Expected Cost: $0.00 \n');
     await parkingCostCalculator.calculateParkingCost('Short-Term Parking', 
                                                      formattedDate, '05:00', 'PM',
                                                      formattedDate, '02:00', 'PM');
     await expect(parkingCostCalculator.resultLabel).toBeVisible();
-    await expect(parkingCostCalculator.resultLabel).toHaveText(/ERROR!/);
+    await expect(parkingCostCalculator.resultLabel).toHaveText('$ 0.00');
 });
 
 

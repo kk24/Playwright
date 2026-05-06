@@ -1,6 +1,6 @@
-<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="13.311576">
-<testsuite name="scripts/CapstoneProjects/ParkingCalculator/parking-calc.spec.ts" timestamp="2026-05-06T05:34:11.246Z" hostname="CapstoneProject1-ParkingCalculator" tests="1" failures="0" skipped="0" time="5.179" errors="0">
-<testcase name="[CapstoneProject1-ParkingCalculator] Parking Cost Calculator Test Suite › Scenario 1: Valet Parking (less than 5 hours)" classname="scripts/CapstoneProjects/ParkingCalculator/parking-calc.spec.ts" time="5.179">
+<testsuites id="" name="" tests="11" failures="0" skipped="0" errors="0" time="41.165052">
+<testsuite name="scripts/CapstoneProjects/ParkingCalculator/parking-calc.spec.ts" timestamp="2026-05-06T23:00:24.901Z" hostname="CapstoneProject1-ParkingCalculator" tests="11" failures="0" skipped="0" time="58.442" errors="0">
+<testcase name="[CapstoneProject1-ParkingCalculator] Parking Cost Calculator Test Suite › Scenario 1: Valet Parking (less than 5 hours)" classname="scripts/CapstoneProjects/ParkingCalculator/parking-calc.spec.ts" time="6.298">
 <system-out>
 <![CDATA[================================================
 Parking Cost Calculator Test Suite
@@ -8,7 +8,125 @@ Parking Cost Calculator Test Suite
 
 Parking Cost Calculator page is loaded
 
-Scenario 1: Entry Time: 09:00 AM | Exit Time: 12:00 PM | Expected Cost: $12.00 ($12 for five hours or less)
+Scenario 1: Valet Parking (less than 5 hours) | Entry Time: 09:00 AM | Exit Time: 12:00 PM | Expected Cost: $12.00 
+
+Parking Cost Calculator page is reloaded for the next test
+
+]]>
+</system-out>
+</testcase>
+<testcase name="[CapstoneProject1-ParkingCalculator] Parking Cost Calculator Test Suite › Scenario 2: Valet Parking (more than 5 hours)" classname="scripts/CapstoneProjects/ParkingCalculator/parking-calc.spec.ts" time="5.52">
+<system-out>
+<![CDATA[Parking Cost Calculator page is loaded
+
+Scenario 2: Valet Parking (more than 5 hours) | Entry Time: 09:00 AM | Exit Time: 03:00 PM | Expected Cost: $18.00 
+
+Parking Cost Calculator page is reloaded for the next test
+
+]]>
+</system-out>
+</testcase>
+<testcase name="[CapstoneProject1-ParkingCalculator] Parking Cost Calculator Test Suite › Scenario 3: Valet Parking (Overnight)" classname="scripts/CapstoneProjects/ParkingCalculator/parking-calc.spec.ts" time="4.967">
+<system-out>
+<![CDATA[Parking Cost Calculator page is loaded
+
+Scenario 3: Valet Parking (Overnight) | Entry Time: 10:00 PM | Exit Time: 08:00 AM (next day) | Expected Cost: $18.00 
+
+Parking Cost Calculator page is reloaded for the next test
+
+]]>
+</system-out>
+</testcase>
+<testcase name="[CapstoneProject1-ParkingCalculator] Parking Cost Calculator Test Suite › Scenario 4: Valet Parking - Invalid Input (Exit Before Entry)" classname="scripts/CapstoneProjects/ParkingCalculator/parking-calc.spec.ts" time="5.158">
+<system-out>
+<![CDATA[Parking Cost Calculator page is loaded
+
+Scenario 4: Valet Parking - Invalid Input (Exit Before Entry) | Entry Time: 05:00 PM | Exit Time: 02:00 PM | Expected Cost: $0.00 
+
+Parking Cost Calculator page is reloaded for the next test
+
+]]>
+</system-out>
+</testcase>
+<testcase name="[CapstoneProject1-ParkingCalculator] Parking Cost Calculator Test Suite › Scenario 5: Short-term Parking (1 hour)" classname="scripts/CapstoneProjects/ParkingCalculator/parking-calc.spec.ts" time="4.968">
+<system-out>
+<![CDATA[Parking Cost Calculator page is loaded
+
+Scenario 5: Short-term Parking (1 hour) | Entry Time: 09:00 AM | Exit Time: 10:00 AM | Expected Cost: $2.00 
+
+Parking Cost Calculator page is reloaded for the next test
+
+]]>
+</system-out>
+</testcase>
+<testcase name="[CapstoneProject1-ParkingCalculator] Parking Cost Calculator Test Suite › Scenario 6: Short-term Parking (1.5 hours)" classname="scripts/CapstoneProjects/ParkingCalculator/parking-calc.spec.ts" time="4.512">
+<system-out>
+<![CDATA[Parking Cost Calculator page is loaded
+
+Scenario 6: Short-term Parking (1.5 hours) | Entry Time: 09:00 AM | Exit Time: 10:30 AM | Expected Cost: $3.00 
+
+Parking Cost Calculator page is reloaded for the next test
+
+================================================
+Parking Cost Calculator Test Suite Completed
+================================================
+
+]]>
+</system-out>
+</testcase>
+<testcase name="[CapstoneProject1-ParkingCalculator] Parking Cost Calculator Test Suite › Scenario 7: Short-term Parking (2 hours)" classname="scripts/CapstoneProjects/ParkingCalculator/parking-calc.spec.ts" time="6.24">
+<system-out>
+<![CDATA[================================================
+Parking Cost Calculator Test Suite
+================================================
+
+Parking Cost Calculator page is loaded
+
+Scenario 7: Short-term Parking (2 hours) | Entry Time: 09:00 AM | Exit Time: 11:00 AM | Expected Cost: $4.00 
+
+Parking Cost Calculator page is reloaded for the next test
+
+]]>
+</system-out>
+</testcase>
+<testcase name="[CapstoneProject1-ParkingCalculator] Parking Cost Calculator Test Suite › Scenario 8: Short-term Parking (Overnight but &lt; 24 hours)" classname="scripts/CapstoneProjects/ParkingCalculator/parking-calc.spec.ts" time="5.383">
+<system-out>
+<![CDATA[Parking Cost Calculator page is loaded
+
+Scenario 8: Short-term Parking (Overnight but < 24 hours) | Entry Time: 10:00 PM | Exit Time: 08:00 AM | Expected Cost: $20.00 
+
+Parking Cost Calculator page is reloaded for the next test
+
+]]>
+</system-out>
+</testcase>
+<testcase name="[CapstoneProject1-ParkingCalculator] Parking Cost Calculator Test Suite › Scenario 9: Short-term Parking (Overnight but = 24 hours)" classname="scripts/CapstoneProjects/ParkingCalculator/parking-calc.spec.ts" time="5.275">
+<system-out>
+<![CDATA[Parking Cost Calculator page is loaded
+
+Scenario 9: Short-term Parking (Overnight but = 24 hours) | Entry Time: 09:00 AM | Exit Time: 09:00 AM | Expected Cost: $24.00 
+
+Parking Cost Calculator page is reloaded for the next test
+
+]]>
+</system-out>
+</testcase>
+<testcase name="[CapstoneProject1-ParkingCalculator] Parking Cost Calculator Test Suite › Scenario 10: Short-term Parking (Overnight but &gt; 24 hours ~ 25.5 hours)" classname="scripts/CapstoneProjects/ParkingCalculator/parking-calc.spec.ts" time="5.122">
+<system-out>
+<![CDATA[Parking Cost Calculator page is loaded
+
+Scenario 10: Short-term Parking (Overnight but > 24 hours ~ 25.5 hours) | Entry Time: 09:00 AM | Exit Time: 10:30 AM | Expected Cost: $27.00 
+
+Parking Cost Calculator page is reloaded for the next test
+
+]]>
+</system-out>
+</testcase>
+<testcase name="[CapstoneProject1-ParkingCalculator] Parking Cost Calculator Test Suite › Scenario 11: Invalid Input (Exit Before Entry)" classname="scripts/CapstoneProjects/ParkingCalculator/parking-calc.spec.ts" time="4.999">
+<system-out>
+<![CDATA[Parking Cost Calculator page is loaded
+
+Scenario 11: Invalid Input (Exit Before Entry) | Entry Time: 05:00 PM | Exit Time: 02:00 PM | Expected Cost: $0.00 
 
 Parking Cost Calculator page is reloaded for the next test
 

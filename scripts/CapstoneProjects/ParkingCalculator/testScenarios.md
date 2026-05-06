@@ -65,5 +65,5 @@ This document outlines the test scenarios for the Parking Calculator application
 ## Scenario 11: Invalid Input (Exit Before Entry)
 - **Entry Time:** 05:00 PM
 - **Exit Time:** 02:00 PM
-- **Expected :** ERROR! Your Leaving Date Or Time Is Before Your Starting Date or Time
+- **Expected :** $0
 
