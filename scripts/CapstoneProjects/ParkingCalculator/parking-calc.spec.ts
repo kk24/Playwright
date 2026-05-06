@@ -4,12 +4,12 @@
  *
  */
 
-import {test, expect, Page} from '../../../fixtures'; // Importing the custom fixtures defined in the fixtures file
+import {parkingPageTest, expect, Page} from '../../../fixtures'; // Importing the custom fixtures defined in the fixtures file
 
 
 
 // Describe groups related tests under a named suite
-test.describe('Parking Cost Calculator Test Suite', () => { 
+parkingPageTest.describe('Parking Cost Calculator Test Suite', () => { 
 
 
 // =============================================================================================
@@ -21,32 +21,32 @@ let sharedPage: Page | undefined; // Initialize as undefined
 
 // ✅ Hook 1 — beforeAll
 // beforeAll hook runs once before all tests in the suite
-test.beforeAll(async () => {
+parkingPageTest.beforeAll(async () => {
     console.log('================================================');
-    console.log('Before All Hook - Bank Login Test Suite');
+    console.log('Parking Cost Calculator Test Suite');
     console.log('================================================');
 });
 
 // ✅ Hook 2 — beforeEach
 // beforeEach hook runs before each test in the suite
-test.beforeEach(async ({bankLogin}) => {
-    bankLogin.goto(); // Ensure we start from the login page before each test
-    await expect(bankLogin.page).toHaveURL(/\/bank/); // Verify we are on the bank login page
-    console.log('Before Each Hook - Bank Login page is loaded');
+parkingPageTest.beforeEach(async ({parkingCostCalculator}) => {
+    parkingCostCalculator.goto(); // Ensure we start from the login page before each test
+    await expect(parkingCostCalculator.page).toHaveURL(/\/parkcalc/); // Verify we are on the parking cost calculator page
+    console.log('Parking Cost Calculator page is loaded');
 });
 
 // ✅ Hook 3 — afterEach
 // afterEach hook runs after each test in the suite
-test.afterEach(async ({bankLogin}) => {
-    await bankLogin.clearFields(); // Clear any pre-filled data before each test
-    console.log('After Each Hook - Fields & alert messages cleared');
+parkingPageTest.afterEach(async ({parkingCostCalculator}) => {
+    await parkingCostCalculator.page.reload(); // Reload the page before each test
+    console.log('Parking Cost Calculator page is reloaded for the next test');
 });
 
 // ✅ Hook 4 — afterAll
 // afterAll hook runs once after all tests in the suite
-test.afterAll(async () => {
+parkingPageTest.afterAll(async () => {
     console.log('================================================');
-    console.log('After All Hook - Bank Login Test Suite Completed');
+    console.log('Parking Cost Calculator Test Suite Completed');
     console.log('================================================');
     if (sharedPage) {
         await sharedPage.close(); // Close the page after all tests are done
@@ -60,43 +60,20 @@ test.afterAll(async () => {
 
 
 // Test#1 - Empty Credentials (Username only)
-test('should display error for empty username', async ({ bankLogin }) => {
-    //await bankLogin.goto();
-    console.log('Executing Test: should display error for empty username');
-    await bankLogin.login('', 'viewer123');
-    await expect(bankLogin.userNameErrorMessage).toBeVisible();
-    await expect(bankLogin.userNameErrorMessage).toHaveText('Username is required');
+parkingPageTest('Scenario 1: Valet Parking (less than 5 hours)', async ({ parkingCostCalculator }) => {
+    //await parkingCostCalculator.goto();
+    console.log('Entry Time: 09:00 AM | Exit Time: 12:00 PM | Expected Cost: $12.00 ($12 for five hours or less)');
+    await parkingCostCalculator.calculateParkingCost('Valet Parking', 
+                                                     '05/06/2026', '09:00', 'AM',
+                                                     '05/06/2026', '12:00', 'PM');
+    await expect(parkingCostCalculator.estimatedCostLabel).toBeVisible();
+    await expect(parkingCostCalculator.estimatedCostLabel).toHaveText('$ 12.00');
 });
 
 
-// Test#2 - Empty Credentials (Password only)
-test('should display error for empty password', async ({ bankLogin }) => {
-    //await bankLogin.goto();
-    console.log('Executing Test: should display error for empty password');
-    await bankLogin.login('viewer', '');
-    await expect(bankLogin.passwordErrorMessage).toBeVisible();
-    await expect(bankLogin.passwordErrorMessage).toHaveText('Password is required');
-});
 
-// Test#3 - Empty Credentials (Both fields empty)
-test('should display errors for empty username and password', async ({ bankLogin }) => {
-    //await bankLogin.goto();
-    console.log('Executing Test: should display errors for empty username and password');
-    await bankLogin.login('', '');
-    await expect(bankLogin.userNameErrorMessage).toBeVisible();
-    await expect(bankLogin.userNameErrorMessage).toHaveText('Username is required');
-    await expect(bankLogin.passwordErrorMessage).toBeVisible();
-    await expect(bankLogin.passwordErrorMessage).toHaveText('Password is required');
-});
 
-// Test#4 - Invalid Credentials
-test('should display alert for invalid credentials', async ({ bankLogin }) => {
-    //await bankLogin.goto();
-    console.log('Executing Test: should display alert for invalid credentials');
-    await bankLogin.login('viewer', 'viewer1234');  // invalid password
-    await expect(bankLogin.alertMessage).toBeVisible();
-    await expect(bankLogin.alertMessage).toHaveText(/Invalid username or password/);
-});
+
 
 
 }); // End of test suite

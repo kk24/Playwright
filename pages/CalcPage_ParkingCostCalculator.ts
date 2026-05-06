@@ -38,22 +38,22 @@ export class ParkingCostCalculatorPage {
     constructor(public readonly page: Page) {
 
         // parking lot dropdown locator
-        this.parkingLotDropDown = page.locator('[id="ParkingLot"]');
-        
+        this.parkingLotDropDown = page.getByRole('combobox', { name: 'parkingLot' }); 
+          
         // entry date, time & AM/PM locators
-        this.entryDateInput = page.locator('[id="StartingDate"]');
-        this.entryTimeInput = page.locator('[id="StartingTime"]');
+        this.entryDateInput = page.getByRole('textbox', { name: 'StartingDate' }); 
+        this.entryTimeInput = page.getByRole('textbox', { name: 'StartingTime' });
         this.entryAmPmRadioBtn = (amPm) => page.locator(`input[name="StartingTimeAMPM"][value="${amPm}"]`);
 
         // leaving date and time locators
-        this.leavingDateInput = page.locator('[id="leaving-date"]');
-        this.leavingTimeInput = page.locator('[id="leaving-time"]');
+        this.leavingDateInput = page.getByRole('textbox', { name: 'LeavingDate' });
+        this.leavingTimeInput = page.getByRole('textbox', { name: 'LeavingTime' });
         this.leavingAmPmRadioBtn = (amPm) => page.locator(`input[name="LeavingTimeAMPM"][value="${amPm}"]`);
         
         // estimated parking cost, calculate button and error message locators
-        this.estimatedCostLabel = page.locator('[id="estimated-cost"]');
-        this.calculateButton = page.locator('[id="calculate-btn"]');
-        this.errorMessage = page.locator('[id="error-message"]');
+        this.calculateButton = page.locator('[id="calculateCost"]');
+        this.estimatedCostLabel = page.locator('[xpath="/html/body/form/table/tbody/tr[4]/td[2]/span[1]/b"]');
+        this.errorMessage = page.locator('[xpath="/html/body/form/table/tbody/tr[4]/td[2]/b"]');
 
     }
 
@@ -68,7 +68,8 @@ export class ParkingCostCalculatorPage {
                 entryAmPm: 'AM' | 'PM',
                 leavingDate: string,  // format: MM/DD/YYYY
                 leavingTime: string,  // format: HH:MM
-                leavingAmPm: 'AM' | 'PM'): Promise<void> {
+                leavingAmPm: 'AM' | 'PM'
+            ): Promise<void> {
         
         await this.parkingLotDropDown.selectOption(parkingLot);
         await this.entryDateInput.fill(entryDate);
