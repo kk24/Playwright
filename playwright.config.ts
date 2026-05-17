@@ -45,6 +45,17 @@ export default defineConfig({
         } 
       },
     
+      //
+      // ------- Capstone Project 2 -Restful Booker E2E -------
+      // 
+      { 
+        name: 'CapstoneProject2-RestfulBooker',
+        testDir: './scripts/CapstoneProjects/RestfulBooker', 
+        use: { ...devices['Desktop Chrome'], 
+        baseURL: 'https://automationintesting.online'
+        } 
+      },
+
 
 
     ]
