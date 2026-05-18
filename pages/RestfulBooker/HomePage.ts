@@ -20,8 +20,8 @@ export class RestfulBookerHomePage {
     readonly roomCards: Locator;
     readonly roomName: Locator;
     readonly roomPrice: Locator;
-    readonly roomAmenities: Locator;
-    readonly roomImage: Locator;
+    //readonly roomAmenities: Locator;
+    //readonly roomImage: Locator;
     readonly bookThisRoomButton: Locator;
 
     // no rooms available message locator
