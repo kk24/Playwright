@@ -74,6 +74,9 @@ export class RestfulBookerHomePage {
         return await this.roomCards.nth(index).locator('.fw-bold').innerText(); // Returns the price of the room from the specified room card
     }
   
+    async goToContactSection() {
+        await this.page.locator('#contact').scrollIntoViewIfNeeded(); // Scrolls to the contact section of the page
+    }
 
 
 }

@@ -28,7 +28,6 @@ export class RestfulBookerRoomPage {
     readonly cancelButton: Locator;    
     readonly confirmationMessage: Locator;
 
-    // room card locators
 
     // Initialize locators in the constructor
     constructor(public readonly page: Page) {
