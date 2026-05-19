@@ -76,7 +76,25 @@ restfulBookerE2ETest('SCN2: Guest completes a successful room booking', async ({
 
     // Step 4: Verify that the room details page is displayed with correct information
     await expect(roomPage.roomName).toBeVisible();
-    // await expect(roomPage.roomPrice).toBeVisible();
+    const { roomPrice, totalPrice } = await roomPage.getRoomPrices();
+    const roomPriceValue = roomPrice.replace('£', '').trim();
+    const totalPriceValue = totalPrice.replace('£', '').trim();
+    //console.log(`Room Name: ${await roomPage.getRoomName()} with Room Price: ${roomPrice}, Total Price: ${totalPrice} is visible`);
+
+    expect(roomPriceValue).toBe('100');
+    expect(totalPriceValue).toBe('140');
+
+    // Step 5: Open the booking form and fill in the details
+    await roomPage.openBookingForm();
+
+    // Step 6: Submit the booking form with valid details
+    await roomPage.bookRoom('Jane', 'Doe', 'jane.doe@example.com', '123456789991');
+
+    // Step 7: Verify that the booking confirmation message is displayed
+    await expect(roomPage.confirmationMessage).toBeVisible();
+    await expect(roomPage.confirmationMessage).toHaveText('Booking Confirmed!');
+
+
 });
 
 

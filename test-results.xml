@@ -1,8 +1,97 @@
-<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="13.149453999999999">
-<testsuite name="scripts/CapstoneProjects/RestfulBooker/guest.spec.ts" timestamp="2026-05-19T02:45:57.450Z" hostname="CapstoneProject2-RestfulBooker" tests="1" failures="0" skipped="0" time="5.436" errors="0">
-<testcase name="[CapstoneProject2-RestfulBooker] Restful Booker - Guest User - Positive Scenarios › SCN1: Guest views available rooms for selected dates" classname="scripts/CapstoneProjects/RestfulBooker/guest.spec.ts" time="5.436">
+<testsuites id="" name="" tests="2" failures="1" skipped="0" errors="0" time="84.142639">
+<testsuite name="scripts/CapstoneProjects/RestfulBooker/guest.spec.ts" timestamp="2026-05-19T22:11:15.492Z" hostname="CapstoneProject2-RestfulBooker" tests="2" failures="1" skipped="0" time="71.919" errors="0">
+<testcase name="[CapstoneProject2-RestfulBooker] Restful Booker - Guest User - Positive Scenarios › SCN1: Guest views available rooms for selected dates" classname="scripts/CapstoneProjects/RestfulBooker/guest.spec.ts" time="7.594">
 <system-out>
-<![CDATA[Selected Check-in Date: 19/05/2026, Check-out Date: 20/05/2026
+<![CDATA[Selected Check-in Date: 20/05/2026, Check-out Date: 21/05/2026
+]]>
+</system-out>
+</testcase>
+<testcase name="[CapstoneProject2-RestfulBooker] Restful Booker - Guest User - Positive Scenarios › SCN2: Guest completes a successful room booking" classname="scripts/CapstoneProjects/RestfulBooker/guest.spec.ts" time="64.325">
+<failure message="guest.spec.ts:65:21 SCN2: Guest completes a successful room booking" type="FAILURE">
+<![CDATA[  [CapstoneProject2-RestfulBooker] › scripts/CapstoneProjects/RestfulBooker/guest.spec.ts:65:21 › Restful Booker - Guest User - Positive Scenarios › SCN2: Guest completes a successful room booking 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: 'Reserve Now' }).nth(1)
+
+
+       at pages/RestfulBooker/RoomPage.ts:78
+
+      76 |         await this.emailInput.fill(email); // Fills in the email
+      77 |         await this.phoneInput.fill(phone); // Fills in the phone number
+    > 78 |         await this.submitBookingButton.click(); // Clicks the "Reserve Now" button to submit the booking
+         |                                        ^
+      79 |     }
+      80 |
+      81 | }
+        at RoomPage.bookRoom (/home/tanaya/playwright/pages/RestfulBooker/RoomPage.ts:78:40)
+        at /home/tanaya/playwright/scripts/CapstoneProjects/RestfulBooker/guest.spec.ts:91:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-Restful-Booker---Gue-80ff1-s-a-successful-room-booking-CapstoneProject2-RestfulBooker/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-Restful-Booker---Gue-80ff1-s-a-successful-room-booking-CapstoneProject2-RestfulBooker/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/guest-Restful-Booker---Gue-80ff1-s-a-successful-room-booking-CapstoneProject2-RestfulBooker/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/guest-Restful-Booker---Gue-80ff1-s-a-successful-room-booking-CapstoneProject2-RestfulBooker/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByRole('button', { name: 'Reserve Now' }).nth(1)
+
+
+       at pages/RestfulBooker/RoomPage.ts:78
+
+      76 |         await this.emailInput.fill(email); // Fills in the email
+      77 |         await this.phoneInput.fill(phone); // Fills in the phone number
+    > 78 |         await this.submitBookingButton.click(); // Clicks the "Reserve Now" button to submit the booking
+         |                                        ^
+      79 |     }
+      80 |
+      81 | }
+        at RoomPage.bookRoom (/home/tanaya/playwright/pages/RestfulBooker/RoomPage.ts:78:40)
+        at /home/tanaya/playwright/scripts/CapstoneProjects/RestfulBooker/guest.spec.ts:91:5
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/guest-Restful-Booker---Gue-80ff1-s-a-successful-room-booking-CapstoneProject2-RestfulBooker-retry1/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/guest-Restful-Booker---Gue-80ff1-s-a-successful-room-booking-CapstoneProject2-RestfulBooker-retry1/error-context.md
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/guest-Restful-Booker---Gue-80ff1-s-a-successful-room-booking-CapstoneProject2-RestfulBooker-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/guest-Restful-Booker---Gue-80ff1-s-a-successful-room-booking-CapstoneProject2-RestfulBooker-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results/guest-Restful-Booker---Gue-80ff1-s-a-successful-room-booking-CapstoneProject2-RestfulBooker/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/guest-Restful-Booker---Gue-80ff1-s-a-successful-room-booking-CapstoneProject2-RestfulBooker/error-context.md]]
+
+[[ATTACHMENT|test-results/guest-Restful-Booker---Gue-80ff1-s-a-successful-room-booking-CapstoneProject2-RestfulBooker/trace.zip]]
+
+[[ATTACHMENT|test-results/guest-Restful-Booker---Gue-80ff1-s-a-successful-room-booking-CapstoneProject2-RestfulBooker-retry1/test-failed-1.png]]
+
+[[ATTACHMENT|test-results/guest-Restful-Booker---Gue-80ff1-s-a-successful-room-booking-CapstoneProject2-RestfulBooker-retry1/error-context.md]]
+
+[[ATTACHMENT|test-results/guest-Restful-Booker---Gue-80ff1-s-a-successful-room-booking-CapstoneProject2-RestfulBooker-retry1/trace.zip]]
 ]]>
 </system-out>
 </testcase>

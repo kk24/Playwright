@@ -45,7 +45,7 @@ export class RoomPage {
         this.lastNameInput = page.getByPlaceholder('Lastname');
         this.emailInput = page.getByPlaceholder('Email');
         this.phoneInput = page.getByPlaceholder('Phone');
-        this.submitBookingButton = page.getByRole('button', { name: 'Reserve Now' }).nth(1);
+        this.submitBookingButton = page.getByRole('button', { name: 'Reserve Now' }).nth(0);
         this.cancelButton = page.getByRole('button', { name: 'Cancel' });
         this.confirmationMessage = page.locator('div.card-body h2.card-title');
     }
@@ -58,12 +58,16 @@ export class RoomPage {
         await this.openBookingFormButton.click();  // Clicks the "Reserve Now" button to open the booking form
     }
 
-    async getRoomName(index: number) {
-        return await this.roomCards.nth(index).locator('.card-title').innerText(); // Returns the name of the room from the specified room card
+    async getRoomName() {
+        return await this.roomName.innerText(); // Returns the name of the room
     }
 
-    async getRoomPrice(index: number) {
-        return await this.roomCards.nth(index).locator('.fw-bold').innerText(); // Returns the price of the room from the specified room card
+    async getRoomPrices() {
+        return {
+                roomPrice: await this.roomPrice.innerText(),
+                totalPrice: await this.totalPrice.innerText()
+        }
+        //return await this.roomPrice.innerText(); // Returns the price of the room
     }
 
     async bookRoom(FName: string, LName: string, email: string, phone: string) {

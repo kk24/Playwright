@@ -37,7 +37,7 @@ export class HomePage {
         this.checkAvailabilityButton = page.locator('#booking').getByRole('button', { name: 'Check Availability' });
 
         // room card locators
-        //this.roomCards = page.locator('.room-card');
+        this.roomCards = page.locator('.room-card');
         this.roomName = page.locator('.room-name .card-text');
         this.roomPrice = page.locator('.room-price .fw-bold');
         //this.roomAmenities = page.locator('.room-amenities .badge');
@@ -62,11 +62,18 @@ export class HomePage {
         return await this.roomCards.count(); // Returns the number of room cards displayed
     }
     
+    async getRoomName(index: number) {
+        return await this.roomCards.nth(index).locator('.card-title').innerText(); // Returns the name of the room from the specified room card
+    }
+
+    async getRoomPrice(index: number) {
+        return await this.roomCards.nth(index).locator('.fw-bold').innerText(); // Returns the price of the room from the specified room card
+    }
+
     async clickBookNow(index: number) {
         await this.roomCards.nth(index).locator('.btn-primary').click(); // Clicks the "Book This Room" button on the specified room card
     }
 
- 
     async goToContactSection() {
         await this.page.locator('#contact').scrollIntoViewIfNeeded(); // Scrolls to the contact section of the page
     }
