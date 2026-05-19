@@ -58,6 +58,14 @@ export class RoomPage {
         await this.openBookingFormButton.click();  // Clicks the "Reserve Now" button to open the booking form
     }
 
+    async getRoomName(index: number) {
+        return await this.roomCards.nth(index).locator('.card-title').innerText(); // Returns the name of the room from the specified room card
+    }
+
+    async getRoomPrice(index: number) {
+        return await this.roomCards.nth(index).locator('.fw-bold').innerText(); // Returns the price of the room from the specified room card
+    }
+
     async bookRoom(FName: string, LName: string, email: string, phone: string) {
         await this.firstNameInput.fill(FName); // Fills in the first name
         await this.lastNameInput.fill(LName); // Fills in the last name
