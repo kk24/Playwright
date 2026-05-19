@@ -12,6 +12,7 @@ export class ContactPage {
     // Typed locator properties – defined once, reused everywhere
 
     // booking details locators
+    readonly contactFormTitle: Locator;
     readonly contactNameInput: Locator;
     readonly contactEmailInput: Locator;
     readonly contactPhoneInput: Locator;
@@ -24,6 +25,7 @@ export class ContactPage {
     // Initialize locators in the constructor
     constructor(public readonly page: Page) {
         // contact locators
+        this.contactFormTitle = page.locator('div.card-body h3.h4.mb-4');
         this.contactNameInput = page.getByTestId('ContactName');
         this.contactEmailInput = page.getByTestId('ContactEmail');
         this.contactPhoneInput = page.getByTestId('ContactPhone');

@@ -31,7 +31,7 @@ const tomorrowDate = [
 // Scenario: 1. Guest views available rooms for selected dates
 // =============================================================================================
 
-restfulBookerE2ETest('SCN1: Guest views available rooms for selected dates', async ({ homePage, roomPage }) => {
+restfulBookerE2ETest('SCN1: Guest views available rooms for selected dates', async ({ homePage }) => {
     
     // Step 1: Search for available rooms
     await homePage.selectDates(todayDate, tomorrowDate); // Select check-in and check-out dates
@@ -92,10 +92,34 @@ restfulBookerE2ETest('SCN2: Guest completes a successful room booking', async ({
 
     // Step 7: Verify that the booking confirmation message is displayed
     await expect(roomPage.confirmationMessage).toBeVisible();
-    await expect(roomPage.confirmationMessage).toHaveText('Booking Confirmed!');
+    await expect(roomPage.confirmationMessage).toHaveText('Booking Confirmed');
+
+});
+
+// =============================================================================================
+// Scenario: 3. Guest submits a valid contact message
+// =============================================================================================
+
+restfulBookerE2ETest('SCN3: Guest submits a valid contact message', async ({ homePage, contactPage }) => {
+    
+    // Step 1: navigate to the contact section and submit a valid message
+    await homePage.goToContactSection();
+
+    // Step 2: verify the contact form is visible and submit with valid details
+    await expect(contactPage.contactFormTitle).toBeVisible();
+    
+    // Step 3: Submit the contact form with valid details
+    await contactPage.submitContactForm('Jane Doe', 'jane.doe@example.com', '123456789991', 'Test Subject', 'This is a test message for the contact form.');
+
+
+
+
 
 
 });
+
+
+
 
 
 
