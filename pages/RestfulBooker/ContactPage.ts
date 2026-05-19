@@ -7,7 +7,7 @@
 import { Page, Locator } from '@playwright/test';
 
 
-export class RestfulBookerContactPage {
+export class ContactPage {
 
     // Typed locator properties – defined once, reused everywhere
 

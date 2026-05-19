@@ -8,6 +8,7 @@
 import { test as base, expect, Page } from '@playwright/test';
 import { BankLoginPage } from '../pages/BankLoginPage_DemoLearn';
 import { ParkingCostCalculatorPage } from '../pages/CalcPage_ParkingCostCalculator';
+import { HomePage, RoomPage, ContactPage } from '../pages/RestfulBooker';
 
 
 //
@@ -45,6 +46,42 @@ export const parkingPageTest = base.extend<ParkingCostCalculatorPageFixture>({
         // tear down code 
         //await page.close();
     }
+});
+
+
+//
+// Fixture for Restful Booker E2E
+//
+type RestfulBookerE2EFixture = {
+    homePage: HomePage;
+    roomPage: RoomPage;
+    contactPage: ContactPage;
+};
+
+export const restfulBookerE2ETest = base.extend<RestfulBookerE2EFixture>({
+    homePage: async ({ page }, use) => {
+        const homePage = new HomePage(page);
+        await homePage.goto();
+        await use(homePage);
+        // tear down code 
+        //await page.close();
+    },
+    roomPage: async ({ page }, use) => {
+        const roomPage = new RoomPage(page);
+        // await roomPage.goto();  // No need to navigate to the room page directly, as it will be navigated to from the home page during the test flow
+        await use(roomPage);
+
+        // tear down code 
+        //await page.close();
+    },
+    contactPage: async ({ page }, use) => {
+        const contactPage = new ContactPage(page);
+        // await contactPage.goto();  // No need to navigate to the contact page directly, as it will be navigated to from the home page during the test flow
+        await use(contactPage);
+
+        // tear down code 
+        //await page.close();
+    },
 });
 
 
