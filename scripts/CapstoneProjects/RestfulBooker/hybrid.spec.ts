@@ -1,5 +1,5 @@
   // ------------------------------------------------
-    // Guest User – Positive Scenarios
+    // API + UI Hybrid Scenarios
   // ------------------------------------------------
 
 import {restfulBookerE2ETest, expect, Page} from '../../../fixtures'; // Importing the custom fixtures defined in the fixtures file
