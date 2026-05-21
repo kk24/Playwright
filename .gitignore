@@ -1,0 +1,17 @@
+# Environment files - never commit tokens
+.env
+.env.*
+
+# Playwright output
+node_modules/
+test-results/
+venv/
+.pytest_cache/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
