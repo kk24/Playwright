@@ -27,6 +27,7 @@ export class RoomPage {
     readonly submitBookingButton : Locator;
     readonly cancelButton: Locator;    
     readonly confirmationMessage: Locator;
+    readonly validationMessage: Locator;
 
 
     // Initialize locators in the constructor
@@ -48,6 +49,7 @@ export class RoomPage {
         this.submitBookingButton = page.getByRole('button', { name: 'Reserve Now' }).nth(0);
         this.cancelButton = page.getByRole('button', { name: 'Cancel' });
         this.confirmationMessage = page.locator('div.card-body h2.card-title');
+        this.validationMessage = page.locator('div.alert-danger'); // Assuming this is the locator for validation messages
     }
 
     // async goto(): Promise<void> {  
