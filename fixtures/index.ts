@@ -9,6 +9,7 @@ import { test as base, expect, Page, request, APIRequestContext } from '@playwri
 import { BankLoginPage } from '../pages/BankLoginPage_DemoLearn';
 import { ParkingCostCalculatorPage } from '../pages/CalcPage_ParkingCostCalculator';
 import { HomePage, RoomPage, ContactPage } from '../pages/RestfulBooker';
+import { GoRestAPIClient } from '../clients/GoRestAPI/GoRestAPIClient';
 
 
 //
@@ -90,6 +91,27 @@ export const restfulBookerE2ETest = base.extend<RestfulBookerE2EFixture>({
         await context.dispose();
     }
     });
+
+
+//
+// Fixture for GORest API Suite
+//
+type GoRestAPISuiteFixtures = {
+    goRestAPIClient: GoRestAPIClient;
+};
+
+export const goRestTest = base.extend<GoRestAPISuiteFixtures>({
+  goRestAPIClient: async ({ request }, use: (fixture: GoRestAPIClient) => Promise<void>) => {
+    await use(new GoRestAPIClient(request));
+  }
+
+});
+
+
+
+
+
+
 
 
 
