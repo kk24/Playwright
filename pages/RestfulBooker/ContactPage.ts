@@ -20,6 +20,7 @@ export class ContactPage {
     readonly contactMessageInput: Locator;
     readonly submitContactButton: Locator;
     readonly contactSuccessMessage: Locator;
+    readonly contactValidationMessage: Locator;
     
    
     // Initialize locators in the constructor
@@ -33,6 +34,7 @@ export class ContactPage {
         this.contactMessageInput = page.getByTestId('ContactDescription');
         this.submitContactButton = page.getByRole('button', { name: 'Submit' });
         this.contactSuccessMessage = page.locator('div.card-body h3.h4.mb-4');
+        this.contactValidationMessage = page.locator('div.alert.alert-danger');
     }
 
     // async goto(): Promise<void> {  

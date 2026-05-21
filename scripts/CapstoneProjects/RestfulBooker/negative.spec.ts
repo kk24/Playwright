@@ -83,8 +83,32 @@ restfulBookerE2ETest('SCN8: Guest cannot search with an invalid date range', asy
 // Scenario: 9. Guest cannot submit a contact form with missing required fields
 // =============================================================================================
 
+const invalidContactData = [
+  { name: '',     email: 'john@example.com', phone: '01234567890', subject: 'Test Subject',  message: 'This is a test message.', missingField: 'firstname'  },
+  { name: 'John', email: '',                 phone: '01234567890', subject: 'Test Subject',  message: 'This is a test message.', missingField: 'email'      },
+  { name: 'John', email: 'john@example.com', phone: '',            subject: 'Test Subject',  message: 'This is a test message.', missingField: 'phone'      },
+  { name: 'John', email: 'john@example.com', phone: '01234567890', subject: '',              message: 'This is a test message.', missingField: 'subject'    },
+  { name: 'John', email: 'john@example.com', phone: '01234567890', subject: 'Test Subject',  message: '',                        missingField: 'message'    },
+];
 
+invalidContactData.forEach(({ name, email, phone, subject, message, missingField }) => {
+  restfulBookerE2ETest(`SCN9: Guest cannot submit a contact form with missing ${missingField} details`, async ({ homePage, contactPage }) => {
+    
+    // Step 1: navigate to the contact section and submit a valid message
+    await homePage.goToContactSection();
 
+    // Step 2: verify the contact form is visible and submit with valid details
+    await expect(contactPage.contactFormTitle).toBeVisible();
+    
+    // Step 3: Submit the contact form with valid details
+    await contactPage.submitContactForm(name, email, phone, subject, message);
+
+    // Step 4: Verify that the validation message is displayed
+    await expect(contactPage.contactValidationMessage).toBeVisible();
+
+  });
+
+});
 
 
 
