@@ -5,7 +5,7 @@
 * In this file, I will define a fixture for various Page Object Models.
 */
 
-import { test as base, expect, Page } from '@playwright/test';
+import { test as base, expect, Page, request, APIRequestContext } from '@playwright/test';
 import { BankLoginPage } from '../pages/BankLoginPage_DemoLearn';
 import { ParkingCostCalculatorPage } from '../pages/CalcPage_ParkingCostCalculator';
 import { HomePage, RoomPage, ContactPage } from '../pages/RestfulBooker';
@@ -56,17 +56,19 @@ type RestfulBookerE2EFixture = {
     homePage: HomePage;
     roomPage: RoomPage;
     contactPage: ContactPage;
+    apiRequest: APIRequestContext;
 };
 
 export const restfulBookerE2ETest = base.extend<RestfulBookerE2EFixture>({
-    homePage: async ({ page }, use) => {
+    
+    homePage: async ({ page }, use: (fixture: HomePage) => Promise<void>) => {
         const homePage = new HomePage(page);
         await homePage.goto();
         await use(homePage);
         // tear down code 
         //await page.close();
     },
-    roomPage: async ({ page }, use) => {
+    roomPage: async ({ page }, use: (fixture: RoomPage) => Promise<void>) => {
         const roomPage = new RoomPage(page);
         // await roomPage.goto();  // No need to navigate to the room page directly, as it will be navigated to from the home page during the test flow
         await use(roomPage);
@@ -74,7 +76,7 @@ export const restfulBookerE2ETest = base.extend<RestfulBookerE2EFixture>({
         // tear down code 
         //await page.close();
     },
-    contactPage: async ({ page }, use) => {
+    contactPage: async ({ page }, use: (fixture: ContactPage) => Promise<void>) => {
         const contactPage = new ContactPage(page);
         // await contactPage.goto();  // No need to navigate to the contact page directly, as it will be navigated to from the home page during the test flow
         await use(contactPage);
@@ -82,7 +84,12 @@ export const restfulBookerE2ETest = base.extend<RestfulBookerE2EFixture>({
         // tear down code 
         //await page.close();
     },
-});
+    apiRequest: async ({}, use: (fixture: APIRequestContext) => Promise<void>) => {
+        const context = await request.newContext();
+        await use(context);
+        await context.dispose();
+    }
+    });
 
 
 

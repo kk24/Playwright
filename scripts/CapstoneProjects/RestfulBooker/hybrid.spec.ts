@@ -5,7 +5,7 @@
 import {restfulBookerE2ETest, expect, Page} from '../../../fixtures'; // Importing the custom fixtures defined in the fixtures file
 
 
-restfulBookerE2ETest.describe('Restful Booker - Guest User - Positive Scenarios', () => {
+restfulBookerE2ETest.describe('Restful Booker - API + UI Hybrid Scenarios', () => {
 
 // =============================================================================================
 // Current / Current + 1   Date - Utility Function
@@ -27,130 +27,70 @@ const tomorrowDate = [
 ].join("/");
 
 
-// =============================================================================================
-// Scenario: 1. Guest views available rooms for selected dates
-// =============================================================================================
+// -------------------------------------------------------
+// Scenario 5 — Room availability service returns empty results
+// -------------------------------------------------------
 
-restfulBookerE2ETest('SCN1: Guest views available rooms for selected dates', async ({ homePage }) => {
-    
-    // Step 1: Search for available rooms
-    await homePage.selectDates(todayDate, tomorrowDate); // Select check-in and check-out dates
-    console.log(`Selected Check-in Date: ${todayDate}, Check-out Date: ${tomorrowDate}`);
+restfulBookerE2ETest('SCN5: Room availability service returns empty results', async ({ page, homePage }) => {
 
-    // Step 2: Get the count of available rooms
-    const availableRoomsCount = await homePage.getRoomCount();
-    //console.log(`Available rooms count: ${availableRoomsCount}`);
+  // Intercept the rooms API before navigating
+  // page.route() must be set up BEFORE the action that triggers the network call
+  await page.route('**/api/room/**', route => {
+    route.fulfill({
+      status: 200,
+      contentType: 'application/json',
+      body: JSON.stringify({ rooms: [] }) // mock empty response
+    });
+  });
 
-    // for (let i = 0; i < availableRoomsCount; i++) {
-    //     const roomName = await homePage.getRoomName(i);
-    //     const roomPrice = await homePage.getRoomPrice(i);
-    //     console.log(`Name - ${roomName}, Price - ${roomPrice}`);
-    // }
-    
-    // Step 2: Verify that available rooms are displayed
-    expect(availableRoomsCount).toBeGreaterThan(0); // Assert that at least one room is available
-
-    // // Step 3: Click on the first available room's "Reserve Now" button to view room details
-    // await homePage.bookThisRoomButton.first().click();
-
-    // // Step 4: Verify that the room details page is displayed with correct information
-    // await expect(roomPage.roomName).toBeVisible();
-    // await expect(roomPage.roomPrice).toBeVisible();
-});
-
-// =============================================================================================
-// Scenario: 2. Guest completes a successful room booking
-// =============================================================================================
-
-restfulBookerE2ETest('SCN2: Guest completes a successful room booking', async ({ homePage, roomPage }) => {
-    
-    // Step 1: Search for available rooms
-    await homePage.selectDates(todayDate, tomorrowDate); // Select check-in and check-out dates
-    //console.log(`Selected Check-in Date: ${todayDate}, Check-out Date: ${tomorrowDate}`);
-
-    // Step 2: Get the count of available rooms
-    const availableRoomsCount = await homePage.getRoomCount();
-        
-    // Step 3: Click on the first available room's "Reserve Now" button to view room details
-    await homePage.clickBookNow(0);
-
-    // Step 4: Verify that the room details page is displayed with correct information
-    await expect(roomPage.roomName).toBeVisible();
-    const { roomPrice, totalPrice } = await roomPage.getRoomPrices();
-    const roomPriceValue = roomPrice.replace('£', '').trim();
-    const totalPriceValue = totalPrice.replace('£', '').trim();
-    //console.log(`Room Name: ${await roomPage.getRoomName()} with Room Price: ${roomPrice}, Total Price: ${totalPrice} is visible`);
-
-    expect(roomPriceValue).toBe('100');
-    expect(totalPriceValue).toBe('140');
-
-    // Step 5: Open the booking form and fill in the details
-    await roomPage.openBookingForm();
-
-    // Step 6: Submit the booking form with valid details
-    await roomPage.bookRoom('Jane', 'Doe', 'jane.doe@example.com', '123456789991');
-
-    // Step 7: Verify that the booking confirmation message is displayed
-    await expect(roomPage.confirmationMessage).toBeVisible();
-    await expect(roomPage.confirmationMessage).toHaveText('Booking Confirmed');
-
-});
-
-// =============================================================================================
-// Scenario: 3. Guest submits a valid contact message
-// =============================================================================================
-
-restfulBookerE2ETest('SCN3: Guest submits a valid contact message', async ({ homePage, contactPage }) => {
-    
-    // Step 1: navigate to the contact section and submit a valid message
-    await homePage.goToContactSection();
-
-    // Step 2: verify the contact form is visible and submit with valid details
-    await expect(contactPage.contactFormTitle).toBeVisible();
-    
-    // Step 3: Submit the contact form with valid details
-    await contactPage.submitContactForm('Jane Doe', 'jane.doe@example.com', '123456789991', 'Test Subject', 'This is a test message for the contact form.');
-
-    // Step 4: Verify that the success message is displayed
-    await expect(contactPage.contactSuccessMessage).toBeVisible();
-    await expect(contactPage.contactSuccessMessage).toHaveText('Your message has been sent successfully! We will get back to you soon.');
-
+  await homePage.goto();
+  await homePage.selectDates(todayDate, tomorrowDate);
+  console.log(`Selected Check-in Date: ${todayDate}, Check-out Date: ${tomorrowDate}`);
+  const availableRoomsCount = await homePage.getRoomCount();
+  expect(availableRoomsCount).toEqual(0); // Assert that at least one room is available
 });
 
 
-// =============================================================================================
-// Scenario: 4. Guest sees room details before booking
-// =============================================================================================
+// -------------------------------------------------------
+// Scenario: 6. Booking conflicts are prevented for already-booked rooms
+// -------------------------------------------------------
 
-restfulBookerE2ETest('SCN4: Guest sees room details before booking', async ({ homePage, roomPage }) => {
-    
-    // Step 1: Search for available rooms
-    await homePage.selectDates(todayDate, tomorrowDate);
-    const availableRoomsCount = await homePage.getRoomCount();
+restfulBookerE2ETest('SCN6: Booking conflicts are prevented for already-booked rooms', async ({ homePage, apiRequest }) => {
 
-    // Step 2: Click on the first available room's "Reserve Now" button to view room details
-    await homePage.clickBookNow(0);
+  // Step 1 — use API to create a booking, bypassing the UI
+  // This is faster and more reliable than clicking through the UI to set up state
+  const response = await apiRequest.post('/api/booking', {
+    data: {
+      roomid: 1,
+      firstname: 'John',
+      lastname: 'Doe',
+      email: 'john@example.com',
+      phone: '01234567890',
+      bookingdates: {
+        checkin: todayDate,
+        checkout: tomorrowDate
+      }
+    }
+  });
 
-    // Step 3: Verify that the room details page is displayed with correct information
-    await expect(roomPage.roomName).toBeVisible();
-    const { roomPrice, totalPrice } = await roomPage.getRoomPrices();
-    const roomPriceValue = roomPrice.replace('£', '').trim();
-    const totalPriceValue = totalPrice.replace('£', '').trim();
-    await expect(roomPage.roomName).toBeVisible();
-    await expect(roomPage.roomPrice).toHaveText(`£${roomPriceValue}`);
-    await expect(roomPage.totalPrice).toHaveText(`£${totalPriceValue}`);
+  // Assert API call succeeded before proceeding to UI
+  expect(response.status()).toBe(201);
 
+  // Extract booking ID for cleanup later
+  const booking = await response.json();
+  const bookingId = booking.bookingid;
+
+  // Step 2 — now verify UI reflects the conflict
+  await homePage.goto();
+  await homePage.selectDates(todayDate, tomorrowDate); // overlapping dates
+
+  const roomCount = await homePage.getRoomCount();
+  expect(roomCount).toBe(0);
+
+  // Step 3 — cleanup: delete the booking via API after test
+  // Important: always clean up API-created data so tests don't affect each other
+  await apiRequest.delete(`/api/booking/${bookingId}`);
 });
-
-
-
-
-
-
-
-
-
-
 
 
 
