@@ -1,6 +1,5 @@
 # Environment files - never commit tokens
-.env
-.env.*
+environments/.env.*
 
 # Playwright output
 node_modules/

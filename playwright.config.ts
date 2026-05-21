@@ -1,5 +1,10 @@
 import { defineConfig, devices } from '@playwright/test';
+import dotenv from 'dotenv';  // Import dotenv to load environment variables
 
+// Load environment variables from the appropriate .env file based on the ENV variable
+dotenv.config({ path: `./environments/.env.${process.env.ENV ?? 'uat'}` });
+
+// See https://playwright.dev/docs/test-configuration for more details.
 export default defineConfig({
   // global settings for all the tests
   timeout: 30 * 1000, // 30 seconds for each test
@@ -56,6 +61,24 @@ export default defineConfig({
         baseURL: 'https://automationintesting.online'
         } 
       },
+
+
+      //
+      // ------- Capstone Project 3 - GoRest API Suite -------
+      // 
+      { 
+        name: 'CapstoneProject3-GoRest-API-Suite',
+        testDir: './scripts/CapstoneProjects/GoRestAPI', 
+        use: { 
+              baseURL: process.env.BASE_URL, // Use environment variable for base URL
+              extraHTTPHeaders: {
+                'Authorization': `Bearer ${process.env.API_TOKEN}`, // Use environment variable for API token
+                'Content-Type': 'application/json'
+              }
+        } 
+      },
+
+
 
     
     ]
