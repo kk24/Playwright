@@ -9,6 +9,11 @@ import { APIRequestContext } from '@playwright/test';
 export class GoRestAPIClient {
   constructor(private request: APIRequestContext) {}
 
+  // -------------------------------------------------------
+  // Users
+  // -------------------------------------------------------
+
+
   // GET list of users
   async getAllUsers() {
     return await this.request.get('/public/v2/users');

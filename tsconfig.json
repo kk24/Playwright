@@ -42,6 +42,13 @@
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
     "skipLibCheck": true,
+    "resolveJsonModule": true
   },
-  "include": ["scripts/Demo-Learn", "pages/BankLoginPage_DemoLearn.ts"]
+  "include": [
+  "scripts/**/*",
+  "pages/**/*",
+  "clients/**/*",
+  "fixtures/**/*",
+  "environments/**/*"
+]
 }
