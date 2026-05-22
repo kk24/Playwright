@@ -45,6 +45,34 @@ goRestTest.describe('GoRest API - Users Endpoint', () => {
 
     });
 
+    // GET - Retrieve a single user by ID
+    goRestTest('GET - should return a single user by ID with status 200', async ({ goRestAPIClient }) => {
+      
+      const userIds = [8473088, 8473086, 8473085]; // existing user IDs in the system
+
+      for (const userId of userIds) {
+        console.log(`Testing GET /users/${userId} endpoint...`);
+        const response = await goRestAPIClient.getUserById(userId);
+
+        // response status assertion
+        expect(response.status()).toBe(200);
+        console.log(`GET /users/${userId} - Response Status:`, response.status());
+
+        // response body assertions
+        const body = await response.json();
+      
+        expect(body).toHaveProperty('id', userId);
+        expect(body).toHaveProperty('name');
+        console.log(body.name);
+        expect(body).toHaveProperty('email');
+        expect(body).toHaveProperty('gender');
+        expect(body).toHaveProperty('status');
+      }
+
+    });
+
+
+
 
 
   });  // end of GET/users collection 
