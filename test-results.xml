@@ -1,0 +1,82 @@
+<testsuites id="" name="" tests="1" failures="0" skipped="0" errors="0" time="7.697093">
+<testsuite name="scripts/CapstoneProjects/GoRestAPI/users.spec.ts" timestamp="2026-05-22T03:53:32.988Z" hostname="CapstoneProject3-GoRest-API-Suite" tests="1" failures="0" skipped="0" time="1.052" errors="0">
+<testcase name="[CapstoneProject3-GoRest-API-Suite] GoRest API - Users Endpoint › GoRest API - GET - users › GET - should return all users with status 200" classname="scripts/CapstoneProjects/GoRestAPI/users.spec.ts" time="1.052">
+<system-out>
+<![CDATA[GET /users - Response Status: [33m200[39m
+GET /users - Response Body: [
+  {
+    id: [33m8473088[39m,
+    name: [32m'Kashyapi Chattopadhyay'[39m,
+    email: [32m'chattopadhyay_kashyapi@ankunding.example'[39m,
+    gender: [32m'female'[39m,
+    status: [32m'active'[39m
+  },
+  {
+    id: [33m8473086[39m,
+    name: [32m'Kashyap Kakkar'[39m,
+    email: [32m'kakkar_kashyap@konopelski-roob.test'[39m,
+    gender: [32m'male'[39m,
+    status: [32m'inactive'[39m
+  },
+  {
+    id: [33m8473085[39m,
+    name: [32m'Bhadra Gill'[39m,
+    email: [32m'gill_bhadra@bartoletti-toy.example'[39m,
+    gender: [32m'female'[39m,
+    status: [32m'inactive'[39m
+  },
+  {
+    id: [33m8473084[39m,
+    name: [32m'Jagadisha Sinha CPA'[39m,
+    email: [32m'jagadisha_sinha_cpa@cummings-dach.example'[39m,
+    gender: [32m'male'[39m,
+    status: [32m'active'[39m
+  },
+  {
+    id: [33m8473083[39m,
+    name: [32m'Abhisyanta Sharma DDS'[39m,
+    email: [32m'dds_sharma_abhisyanta@rippin-hegmann.example'[39m,
+    gender: [32m'female'[39m,
+    status: [32m'active'[39m
+  },
+  {
+    id: [33m8473082[39m,
+    name: [32m'Avadhesh Kakkar'[39m,
+    email: [32m'kakkar_avadhesh@hackett.test'[39m,
+    gender: [32m'male'[39m,
+    status: [32m'inactive'[39m
+  },
+  {
+    id: [33m8473081[39m,
+    name: [32m'Narinder Nayar'[39m,
+    email: [32m'nayar_narinder@bogisich.example'[39m,
+    gender: [32m'male'[39m,
+    status: [32m'active'[39m
+  },
+  {
+    id: [33m8473080[39m,
+    name: [32m'Chandrakala Joshi'[39m,
+    email: [32m'chandrakala_joshi@tillman.test'[39m,
+    gender: [32m'female'[39m,
+    status: [32m'active'[39m
+  },
+  {
+    id: [33m8473079[39m,
+    name: [32m'Fr. Gati Bandopadhyay'[39m,
+    email: [32m'fr_bandopadhyay_gati@buckridge.test'[39m,
+    gender: [32m'female'[39m,
+    status: [32m'active'[39m
+  },
+  {
+    id: [33m8473078[39m,
+    name: [32m'Rev. Girija Kaur'[39m,
+    email: [32m'rev_kaur_girija@fay-nicolas.test'[39m,
+    gender: [32m'female'[39m,
+    status: [32m'inactive'[39m
+  }
+]
+]]>
+</system-out>
+</testcase>
+</testsuite>
+</testsuites>

@@ -15,5 +15,53 @@
 import { goRestTest, expect } from '../../../fixtures';
 
 // Import test data - POST
-import createUserValidData from '../testData/users/POST/createUser_valid.json';
+import createUserValidData from './testData/users/POST/createUser_valid.json';
+import createUserMissingEmail from './testData/users/POST/createUser_missingEmail.json';
+import createUserInvalidGender from './testData/users/POST/createUser_invalidGender.json';
 
+
+// User-related tests - GET, POST, PUT, PATCH, DELETE (CRUD operations)
+goRestTest.describe('GoRest API - Users Endpoint', () => {
+
+  // -------------------------------------------------------
+  // GET
+  // -------------------------------------------------------
+
+  goRestTest.describe('GoRest API - GET - users', () => {
+
+    // GET - Retrieve list of all users
+    goRestTest('GET - should return all users with status 200', async ({ goRestAPIClient }) => {
+      const response = await goRestAPIClient.getAllUsers();
+
+      // response status assertion
+      expect(response.status()).toBe(200);
+      //console.log('GET /users - Response Status:', response.status());
+
+      // response body assertions
+      const body = await response.json();
+      expect(Array.isArray(body)).toBe(true);
+      expect(body.length).toBe(10);
+      //console.log('GET /users - Response Body:', body);
+
+    });
+
+
+
+  });  // end of GET/users collection 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}); // end of overall CRUD Collection for users endpoint
