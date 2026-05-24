@@ -48,7 +48,7 @@ goRestTest.describe('GoRest API - Users Endpoint', () => {
     // GET - Retrieve a single user by ID
     goRestTest('GET - should return a single user by ID with status 200', async ({ goRestAPIClient }) => {
       
-      const userIds = [8473088, 8473086, 8473085]; // existing user IDs in the system
+      const userIds = [8475764, 8475763, 8475762]; // existing user IDs in the system
 
       for (const userId of userIds) {
         console.log(`Testing GET /users/${userId} endpoint...`);
@@ -70,6 +70,30 @@ goRestTest.describe('GoRest API - Users Endpoint', () => {
       }
 
     });
+
+    // GET - Error on invalid user ID
+      goRestTest('GET - should return 404 for invalid user ID', async ({ goRestAPIClient }) => {
+      
+      const userIds = [9975762]; // existing user IDs in the system
+
+      for (const userId of userIds) {
+        console.log(`Testing GET /users/${userId} endpoint...`);
+        const response = await goRestAPIClient.getUserById(userId);
+
+        // response status assertion
+        expect(response.status()).toBe(404);
+        //console.log(`GET /users/${userId} - Response Status:`, response.status());
+
+        // response body assertions
+        const body = await response.json();
+        expect(body.message).toBe('Resource not found');
+      }
+
+    });   
+
+
+
+    
 
 
 
