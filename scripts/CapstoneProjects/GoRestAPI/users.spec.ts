@@ -190,14 +190,35 @@ goRestTest.describe('GoRest API - Users Endpoint', () => {
     
     });  
 
-
-
-
-
-
   }); // end of PUT/users collection
 
 
+  // -------------------------------------------------------
+  // PATCH
+  // -------------------------------------------------------  
+
+  goRestTest.describe('GoRest API - PATCH - users', () => {
+
+    // PATCH - update user details with valid data    
+    goRestTest('PATCH - should update a user successfully with status 200', async ({ goRestAPIClient }) => {
+      
+      const response = await goRestAPIClient.updateUser(userId, patchUserStatus);
+
+      // response status assertion
+      expect(response.status()).toBe(200);
+      //console.log(`POST /users - Response Status:`, response.status());
+
+      // response body assertions
+      const body = await response.json();
+
+      // generic assertion — validates response matches request dynamically
+      Object.keys(patchUserStatus).forEach(key => {
+        expect(body[key]).toBe(patchUserStatus[key as keyof typeof patchUserStatus]);
+      });
+    
+    });  
+
+  }); // end of PATCH/users collection
 
 
 
