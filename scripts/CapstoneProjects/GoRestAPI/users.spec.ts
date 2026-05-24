@@ -19,6 +19,16 @@ import createUserValidData from './testData/users/POST/createUser_valid.json';
 import createUserMissingEmail from './testData/users/POST/createUser_missingEmail.json';
 import createUserInvalidGender from './testData/users/POST/createUser_invalidGender.json';
 
+// Import test data - PUT
+import updateUserName from './testData/users/PUT/updateUser_name.json';
+
+// Import test data - PATCH
+import patchUserStatus from './testData/users/PATCH/patchUser_status.json';
+
+
+
+
+
 
 // User-related tests - GET, POST, PUT, PATCH, DELETE (CRUD operations)
 goRestTest.describe('GoRest API - Users Endpoint', () => {
@@ -147,12 +157,24 @@ goRestTest.describe('GoRest API - Users Endpoint', () => {
       expect(body.field).toBe('gender');
       expect(body.message).toBe('can\'t be blank, can be male or female');
     });
-
-
-
-    
+  
+ 
   });  // end of POST/users collection
 
+
+  // -------------------------------------------------------
+  // PUT
+  // -------------------------------------------------------  
+
+  goRestTest.describe('GoRest API - POST - users', () => {
+
+
+
+
+
+
+
+  }); // end of PUT/users collection
 
 
 
