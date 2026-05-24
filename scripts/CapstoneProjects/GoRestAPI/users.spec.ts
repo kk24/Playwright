@@ -88,7 +88,6 @@ goRestTest.describe('GoRest API - Users Endpoint', () => {
         const body = await response.json();
         expect(body.message).toBe('Resource not found');
       }
-
     });   
 
   });  // end of GET/users collection 
@@ -99,6 +98,55 @@ goRestTest.describe('GoRest API - Users Endpoint', () => {
   // -------------------------------------------------------  
 
   goRestTest.describe('GoRest API - POST - users', () => {
+
+    // POST - Create a new user with valid data    
+    goRestTest('POST - should create a user successfully with status 201', async ({ goRestAPIClient }) => {
+      
+      const response = await goRestAPIClient.createUser(createUserValidData);
+
+      // response status assertion
+      expect(response.status()).toBe(201);
+      //console.log(`POST /users - Response Status:`, response.status());
+
+      // response body assertions
+      const body = await response.json();
+      expect(body).toHaveProperty('id');
+      expect(body).toHaveProperty('name', createUserValidData.name);
+      expect(body).toHaveProperty('email', createUserValidData.email);
+      expect(body).toHaveProperty('gender', createUserValidData.gender);
+      expect(body).toHaveProperty('status', createUserValidData.status);
+    
+    });  
+
+    // POST - Create a new user with invalid data (missing email)    
+    goRestTest('POST - should return 422 when email is missing', async ({ goRestAPIClient }) => {
+      
+      const response = await goRestAPIClient.createUser(createUserMissingEmail);
+
+      // response status assertion
+      expect(response.status()).toBe(422);
+      //console.log(`POST /users - Response Status:`, response.status());
+
+      // response body assertions
+      const body = await response.json();
+      expect(body.field).toBe('email');
+      expect(body.message).toBe('can\'t be blank');
+    });
+
+    // POST - Create a new user with invalid data (unknown gender)    
+    goRestTest('POST - should return 422 when gender is invalid', async ({ goRestAPIClient }) => {
+      
+      const response = await goRestAPIClient.createUser(createUserInvalidGender);
+
+      // response status assertion
+      expect(response.status()).toBe(422);
+      //console.log(`POST /users - Response Status:`, response.status());
+
+      // response body assertions
+      const body = await response.json();
+      expect(body.field).toBe('gender');
+      expect(body.message).toBe('can\'t be blank, can be male or female');
+    });
 
 
 
