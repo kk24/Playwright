@@ -91,20 +91,19 @@ goRestTest.describe('GoRest API - Users Endpoint', () => {
 
     });   
 
-
-
-    
-
-
-
-
-
   });  // end of GET/users collection 
 
 
+  // -------------------------------------------------------
+  // POST
+  // -------------------------------------------------------  
+
+  goRestTest.describe('GoRest API - POST - users', () => {
 
 
 
+    
+  });  // end of POST/users collection
 
 
 
