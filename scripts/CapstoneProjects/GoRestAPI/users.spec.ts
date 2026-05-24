@@ -20,13 +20,14 @@ import createUserMissingEmail from './testData/users/POST/createUser_missingEmai
 import createUserInvalidGender from './testData/users/POST/createUser_invalidGender.json';
 
 // Import test data - PUT
-import updateUserName from './testData/users/PUT/updateUser_name.json';
+import updateUserDetails from './testData/users/PUT/updateUser_details.json';
 
 // Import test data - PATCH
 import patchUserStatus from './testData/users/PATCH/patchUser_status.json';
 
 
-
+// variable: userId [store the ID of the user created during POST test to be used in subsequent PUT, PATCH, DELETE tests] 
+let userId: number = 0; // initialize with a default value, will be updated after POST test runs successfully
 
 
 
@@ -121,6 +122,8 @@ goRestTest.describe('GoRest API - Users Endpoint', () => {
       // response body assertions
       const body = await response.json();
       expect(body).toHaveProperty('id');
+      userId = body.id; // store the created user ID for subsequent tests
+
       expect(body).toHaveProperty('name', createUserValidData.name);
       expect(body).toHaveProperty('email', createUserValidData.email);
       expect(body).toHaveProperty('gender', createUserValidData.gender);
@@ -166,8 +169,26 @@ goRestTest.describe('GoRest API - Users Endpoint', () => {
   // PUT
   // -------------------------------------------------------  
 
-  goRestTest.describe('GoRest API - POST - users', () => {
+  goRestTest.describe('GoRest API - PUT - users', () => {
 
+    // PUT - update user details with valid data    
+    goRestTest('PUT - should update a user successfully with status 200', async ({ goRestAPIClient }) => {
+      
+      const response = await goRestAPIClient.updateUser(userId, updateUserDetails);
+
+      // response status assertion
+      expect(response.status()).toBe(200);
+      //console.log(`POST /users - Response Status:`, response.status());
+
+      // response body assertions
+      const body = await response.json();
+
+      // generic assertion — validates response matches request dynamically
+      Object.keys(updateUserDetails).forEach(key => {
+        expect(body[key]).toBe(updateUserDetails[key as keyof typeof updateUserDetails]);
+      });
+    
+    });  
 
 
 

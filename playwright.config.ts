@@ -69,6 +69,7 @@ export default defineConfig({
       { 
         name: 'CapstoneProject3-GoRest-API-Suite',
         testDir: './scripts/CapstoneProjects/GoRestAPI', 
+        fullyParallel: false, // run tests sequentially to maintain state (user creation, update, deletion)
         use: { 
               baseURL: process.env.BASE_URL, // Use environment variable for base URL
               extraHTTPHeaders: {
