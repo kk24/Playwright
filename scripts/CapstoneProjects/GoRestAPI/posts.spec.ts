@@ -15,34 +15,34 @@
 import { goRestTest, expect } from '../../../fixtures';
 
 // Import test data - POST
-import createUserValidData from './testData/users/POST/createUser_valid.json';
-import createUserMissingEmail from './testData/users/POST/createUser_missingEmail.json';
-import createUserInvalidGender from './testData/users/POST/createUser_invalidGender.json';
+import createPostValidData from './testData/posts/POST/createPost_valid.json';
+import createPostMissingBody from './testData/posts/POST/createPost_missingBody.json';
+import createPostBlankTitle from './testData/posts/POST/createPost_blankTitle.json';
 
 // Import test data - PUT
-import updateUserDetails from './testData/users/PUT/updateUser_details.json';
+//import updateUserDetails from './testData/users/PUT/updateUser_details.json';
 
 // Import test data - PATCH
-import patchUserStatus from './testData/users/PATCH/patchUser_status.json';
+//import patchUserStatus from './testData/users/PATCH/patchUser_status.json';
 
 
 // variable: userId [store the ID of the user created during POST test to be used in subsequent PUT, PATCH, DELETE tests] 
 let userId: number = 0; // initialize with a default value, will be updated after POST test runs successfully
+let postId: number = 0; // initialize with a default value, will be updated after POST test runs successfully
 
 
-
-// User-related tests - GET, POST, PUT, PATCH, DELETE (CRUD operations)
-goRestTest.describe('GoRest API - Users Endpoint', () => {
+// Post-related tests - GET, POST, PUT, PATCH, DELETE (CRUD operations)
+goRestTest.describe('GoRest API - Posts Endpoint', () => {
 
   // -------------------------------------------------------
   // GET
   // -------------------------------------------------------
 
-  goRestTest.describe('GoRest API - GET - users', () => {
+  goRestTest.describe('GoRest API - GET - posts', () => {
 
-    // GET - Retrieve list of all users
-    goRestTest('GET - should return all users with status 200', async ({ goRestAPIClient }) => {
-      const response = await goRestAPIClient.getAllUsers();
+    // GET - Retrieve list of all posts
+    goRestTest('GET - should return all posts with status 200', async ({ goRestAPIClient }) => {
+      const response = await goRestAPIClient.getAllPosts();
 
       // response status assertion
       expect(response.status()).toBe(200);
@@ -56,8 +56,8 @@ goRestTest.describe('GoRest API - Users Endpoint', () => {
 
     });
 
-    // GET - Retrieve a single user by ID
-    goRestTest('GET - should return a single user by ID with status 200', async ({ goRestAPIClient }) => {
+    // GET - Retrieve a single post by ID
+    goRestTest('GET - should return a single post by ID with status 200', async ({ goRestAPIClient }) => {
       
       const userIds = [8475764, 8475763, 8475762]; // existing user IDs in the system
 
