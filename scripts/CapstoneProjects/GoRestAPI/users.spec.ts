@@ -202,7 +202,7 @@ goRestTest.describe('GoRest API - Users Endpoint', () => {
     // PATCH - update user details with valid data    
     goRestTest('PATCH - should update a user successfully with status 200', async ({ goRestAPIClient }) => {
       
-      const response = await goRestAPIClient.updateUser(userId, patchUserStatus);
+      const response = await goRestAPIClient.patchUser(userId, patchUserStatus);
 
       // response status assertion
       expect(response.status()).toBe(200);
@@ -220,6 +220,33 @@ goRestTest.describe('GoRest API - Users Endpoint', () => {
 
   }); // end of PATCH/users collection
 
+
+  // -------------------------------------------------------
+  // DELETE
+  // -------------------------------------------------------  
+
+  goRestTest.describe('GoRest API - DELETE - users', () => {
+
+    // DELETE - delete a user    
+    goRestTest('DELETE - should delete a user successfully with status 204', async ({ goRestAPIClient }) => {
+
+      const response = await goRestAPIClient.deleteUser(userId);
+
+      // response status assertion
+      expect(response.status()).toBe(204);
+      //console.log(`POST /users - Response Status:`, response.status());
+
+      // response body assertions
+      const body = await response.json();
+
+      // generic assertion — validates response matches request dynamically
+      Object.keys(patchUserStatus).forEach(key => {
+        expect(body[key]).toBe(patchUserStatus[key as keyof typeof patchUserStatus]);
+      });
+    
+    });  
+
+  }); // end of PATCH/users collection
 
 
 
