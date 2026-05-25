@@ -1,6 +1,4 @@
 {
-  "name": "John Dorian",
-  "email": "john.dorian@example.com",
-  "gender": "unknown",
-  "status": "active"
+  "title": "",
+  "body": "This is the body of the demo post."
 }
