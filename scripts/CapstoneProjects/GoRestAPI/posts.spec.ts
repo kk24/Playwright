@@ -1,13 +1,13 @@
 // *****************************
-// File: users.spec.ts
-// Description: This file contains tests for the user-related endpoints of the GoRest API, including creating, retrieving, updating, and deleting users.
+// File: posts.spec.ts
+// Description: This file contains tests for the post-related endpoints of the GoRest API, including creating, retrieving, updating, and deleting posts.
 // Endpoints tested include:
-//  - GET /public/v2/users
-//  - GET /public/v2/users/{id}
-//  - POST /public/v2/users
-//  - PUT /public/v2/users/{id}
-//  - PATCH /public/v2/users/{id}
-//  - DELETE /public/v2/users/{id}
+//  - GET /public/v2/posts
+//  - GET /public/v2/posts/{id}
+//  - POST /public/v2/posts
+//  - PUT /public/v2/posts/{id}
+//  - PATCH /public/v2/posts/{id}
+//  - DELETE /public/v2/posts/{id}
 //
 // *****************************
 
