@@ -28,6 +28,8 @@ import patchUserStatus from './testData/users/PATCH/patchUser_status.json';
 
 // variable: userId [store the ID of the user created during POST test to be used in subsequent PUT, PATCH, DELETE tests] 
 let userId: number = 0; // initialize with a default value, will be updated after POST test runs successfully
+let userIds: number[] = [];  // array to store all the user Ids
+
 
 
 
@@ -50,6 +52,8 @@ goRestTest.describe('GoRest API - Users Endpoint', () => {
 
       // response body assertions
       const body = await response.json();
+      const userIds = body.map((user: any) => user.id);  // store all the existing ids into an array.
+      
       expect(Array.isArray(body)).toBe(true);
       expect(body.length).toBe(10);
       //console.log('GET /users - Response Body:', body);
@@ -59,7 +63,11 @@ goRestTest.describe('GoRest API - Users Endpoint', () => {
     // GET - Retrieve a single user by ID
     goRestTest('GET - should return a single user by ID with status 200', async ({ goRestAPIClient }) => {
       
-      const userIds = [8475764, 8475763, 8475762]; // existing user IDs in the system
+      const randomIds: number[] = [
+                                    userIds[Math.floor(Math.random() * userIds.length)]!,
+                                    userIds[Math.floor(Math.random() * userIds.length)]!,
+                                    userIds[Math.floor(Math.random() * userIds.length)]!
+      ];
 
       for (const userId of userIds) {
         console.log(`Testing GET /users/${userId} endpoint...`);
@@ -102,6 +110,7 @@ goRestTest.describe('GoRest API - Users Endpoint', () => {
     });   
 
   });  // end of GET/users collection 
+
 
 
   // -------------------------------------------------------
@@ -165,6 +174,7 @@ goRestTest.describe('GoRest API - Users Endpoint', () => {
   });  // end of POST/users collection
 
 
+
   // -------------------------------------------------------
   // PUT
   // -------------------------------------------------------  
@@ -191,6 +201,7 @@ goRestTest.describe('GoRest API - Users Endpoint', () => {
     });  
 
   }); // end of PUT/users collection
+
 
 
   // -------------------------------------------------------
@@ -221,6 +232,7 @@ goRestTest.describe('GoRest API - Users Endpoint', () => {
   }); // end of PATCH/users collection
 
 
+  
   // -------------------------------------------------------
   // DELETE
   // -------------------------------------------------------  
