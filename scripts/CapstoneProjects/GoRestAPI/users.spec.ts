@@ -34,7 +34,7 @@ let userIds: number[] = [];  // array to store all the user Ids
 
 
 // User-related tests - GET, POST, PUT, PATCH, DELETE (CRUD operations)
-goRestTest.describe('GoRest API - Users Endpoint', () => {
+goRestTest.describe.serial('GoRest API - Users Endpoint', () => {
 
   // -------------------------------------------------------
   // GET
@@ -132,6 +132,7 @@ goRestTest.describe('GoRest API - Users Endpoint', () => {
       const body = await response.json();
       expect(body).toHaveProperty('id');
       userId = body.id; // store the created user ID for subsequent tests
+      console.log(`Created user ID: ${userId}`);
 
       expect(body).toHaveProperty('name', createUserValidData.name);
       expect(body).toHaveProperty('email', createUserValidData.email);
@@ -151,12 +152,12 @@ goRestTest.describe('GoRest API - Users Endpoint', () => {
 
       // response body assertions
       const body = await response.json();
-      expect(body.field).toBe('email');
-      expect(body.message).toBe('can\'t be blank');
+      expect(body[0].field).toBe('email');
+      expect(body[0].message).toBe('can\'t be blank');
     });
 
     // POST - Create a new user with invalid data (unknown gender)    
-    goRestTest('POST - should return 422 when gender is invalid', async ({ goRestAPIClient }) => {
+    goRestTest('POST - should return 422 when gender is invalid', async ({ goRestAPIClient }) => { 
       
       const response = await goRestAPIClient.createUser(createUserInvalidGender);
 
@@ -166,8 +167,8 @@ goRestTest.describe('GoRest API - Users Endpoint', () => {
 
       // response body assertions
       const body = await response.json();
-      expect(body.field).toBe('gender');
-      expect(body.message).toBe('can\'t be blank, can be male or female');
+      expect(body[0].field).toBe('gender');
+      expect(body[0].message).toBe('can\'t be blank, can be male of female');
     });
   
  
@@ -182,9 +183,10 @@ goRestTest.describe('GoRest API - Users Endpoint', () => {
   goRestTest.describe('GoRest API - PUT - users', () => {
 
     // PUT - update user details with valid data    
-    goRestTest('PUT - should update a user successfully with status 200', async ({ goRestAPIClient }) => {
+    goRestTest('PUT - should update a user successfully with status 200', async ({ goRestAPIClient }) => { 
       
       const response = await goRestAPIClient.updateUser(userId, updateUserDetails);
+      //const response = await goRestAPIClient.updateUser(8479317, updateUserDetails);
 
       // response status assertion
       expect(response.status()).toBe(200);
@@ -240,7 +242,7 @@ goRestTest.describe('GoRest API - Users Endpoint', () => {
   goRestTest.describe('GoRest API - DELETE - users', () => {
 
     // DELETE - delete a user    
-    goRestTest('DELETE - should delete a user successfully with status 204', async ({ goRestAPIClient }) => {
+    goRestTest('DELETE - should delete a user successfully with status 204', async ({ goRestAPIClient }) => {  //failed
 
       const response = await goRestAPIClient.deleteUser(userId);
 

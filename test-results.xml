@@ -1,18 +1,81 @@
-<testsuites id="" name="" tests="2" failures="0" skipped="0" errors="0" time="10.272791">
-<testsuite name="scripts/CapstoneProjects/GoRestAPI/users.spec.ts" timestamp="2026-05-22T04:27:48.295Z" hostname="CapstoneProject3-GoRest-API-Suite" tests="2" failures="0" skipped="0" time="2.896" errors="0">
-<testcase name="[CapstoneProject3-GoRest-API-Suite] GoRest API - Users Endpoint › GoRest API - GET - users › GET - should return all users with status 200" classname="scripts/CapstoneProjects/GoRestAPI/users.spec.ts" time="1.064">
+<testsuites id="" name="" tests="9" failures="1" skipped="0" errors="0" time="23.713789000000002">
+<testsuite name="scripts/CapstoneProjects/GoRestAPI/users.spec.ts" timestamp="2026-05-26T22:36:00.637Z" hostname="CapstoneProject3-GoRest-API-Suite" tests="9" failures="1" skipped="0" time="7.411" errors="0">
+<testcase name="[CapstoneProject3-GoRest-API-Suite] GoRest API - Users Endpoint › GoRest API - GET - users › GET - should return all users with status 200" classname="scripts/CapstoneProjects/GoRestAPI/users.spec.ts" time="1.94">
 </testcase>
-<testcase name="[CapstoneProject3-GoRest-API-Suite] GoRest API - Users Endpoint › GoRest API - GET - users › GET - should return a single user by ID with status 200" classname="scripts/CapstoneProjects/GoRestAPI/users.spec.ts" time="1.832">
+<testcase name="[CapstoneProject3-GoRest-API-Suite] GoRest API - Users Endpoint › GoRest API - GET - users › GET - should return a single user by ID with status 200" classname="scripts/CapstoneProjects/GoRestAPI/users.spec.ts" time="0.144">
+</testcase>
+<testcase name="[CapstoneProject3-GoRest-API-Suite] GoRest API - Users Endpoint › GoRest API - GET - users › GET - should return 404 for invalid user ID" classname="scripts/CapstoneProjects/GoRestAPI/users.spec.ts" time="0.671">
 <system-out>
-<![CDATA[Testing GET /users/8473088 endpoint...
-GET /users/8473088 - Response Status: [33m200[39m
-Kashyapi Chattopadhyay
-Testing GET /users/8473086 endpoint...
-GET /users/8473086 - Response Status: [33m200[39m
-Kashyap Kakkar
-Testing GET /users/8473085 endpoint...
-GET /users/8473085 - Response Status: [33m200[39m
-Bhadra Gill
+<![CDATA[Testing GET /users/9975762 endpoint...
+Testing GET /users/9975762 endpoint...
+]]>
+</system-out>
+</testcase>
+<testcase name="[CapstoneProject3-GoRest-API-Suite] GoRest API - Users Endpoint › GoRest API - POST - users › POST - should create a user successfully with status 201" classname="scripts/CapstoneProjects/GoRestAPI/users.spec.ts" time="0.798">
+<system-out>
+<![CDATA[Created user ID: 8479335
+Created user ID: 8479336
+]]>
+</system-out>
+</testcase>
+<testcase name="[CapstoneProject3-GoRest-API-Suite] GoRest API - Users Endpoint › GoRest API - POST - users › POST - should return 422 when email is missing" classname="scripts/CapstoneProjects/GoRestAPI/users.spec.ts" time="0.646">
+</testcase>
+<testcase name="[CapstoneProject3-GoRest-API-Suite] GoRest API - Users Endpoint › GoRest API - POST - users › POST - should return 422 when gender is invalid" classname="scripts/CapstoneProjects/GoRestAPI/users.spec.ts" time="0.683">
+</testcase>
+<testcase name="[CapstoneProject3-GoRest-API-Suite] GoRest API - Users Endpoint › GoRest API - PUT - users › PUT - should update a user successfully with status 200" classname="scripts/CapstoneProjects/GoRestAPI/users.spec.ts" time="0.898">
+</testcase>
+<testcase name="[CapstoneProject3-GoRest-API-Suite] GoRest API - Users Endpoint › GoRest API - PATCH - users › PATCH - should update a user successfully with status 200" classname="scripts/CapstoneProjects/GoRestAPI/users.spec.ts" time="0.709">
+</testcase>
+<testcase name="[CapstoneProject3-GoRest-API-Suite] GoRest API - Users Endpoint › GoRest API - DELETE - users › DELETE - should delete a user successfully with status 204" classname="scripts/CapstoneProjects/GoRestAPI/users.spec.ts" time="0.922">
+<failure message="users.spec.ts:245:15 DELETE - should delete a user successfully with status 204" type="FAILURE">
+<![CDATA[  [CapstoneProject3-GoRest-API-Suite] › scripts/CapstoneProjects/GoRestAPI/users.spec.ts:245:15 › GoRest API - Users Endpoint › GoRest API - DELETE - users › DELETE - should delete a user successfully with status 204 
+
+    SyntaxError: Unexpected end of JSON input
+
+      252 |
+      253 |       // response body assertions
+    > 254 |       const body = await response.json();
+          |                    ^
+      255 |
+      256 |       // generic assertion — validates response matches request dynamically
+      257 |       Object.keys(patchUserStatus).forEach(key => {
+        at /home/tanaya/playwright/scripts/CapstoneProjects/GoRestAPI/users.spec.ts:254:20
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/users-GoRest-API---Users-E-69a8f-uccessfully-with-status-204-CapstoneProject3-GoRest-API-Suite/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/users-GoRest-API---Users-E-69a8f-uccessfully-with-status-204-CapstoneProject3-GoRest-API-Suite/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Retry #1 ───────────────────────────────────────────────────────────────────────────────────────
+
+    SyntaxError: Unexpected end of JSON input
+
+      252 |
+      253 |       // response body assertions
+    > 254 |       const body = await response.json();
+          |                    ^
+      255 |
+      256 |       // generic assertion — validates response matches request dynamically
+      257 |       Object.keys(patchUserStatus).forEach(key => {
+        at /home/tanaya/playwright/scripts/CapstoneProjects/GoRestAPI/users.spec.ts:254:20
+
+    attachment #1: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/users-GoRest-API---Users-E-69a8f-uccessfully-with-status-204-CapstoneProject3-GoRest-API-Suite-retry1/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/users-GoRest-API---Users-E-69a8f-uccessfully-with-status-204-CapstoneProject3-GoRest-API-Suite-retry1/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+]]>
+</failure>
+<system-out>
+<![CDATA[
+[[ATTACHMENT|test-results/users-GoRest-API---Users-E-69a8f-uccessfully-with-status-204-CapstoneProject3-GoRest-API-Suite/trace.zip]]
+
+[[ATTACHMENT|test-results/users-GoRest-API---Users-E-69a8f-uccessfully-with-status-204-CapstoneProject3-GoRest-API-Suite-retry1/trace.zip]]
 ]]>
 </system-out>
 </testcase>
