@@ -43,9 +43,9 @@ goRestTest.describe('GoRest API - Todos Endpoint', () => {
 
   goRestTest.describe('GoRest API - GET - todos', () => {
 
-    // GET - Retrieve list of all posts
-    goRestTest('GET - should return all posts with status 200', async ({ goRestAPIClient }) => {
-      const response = await goRestAPIClient.getAllPosts();
+    // GET - Retrieve list of all todos
+    goRestTest('GET - should return all todos with status 200', async ({ goRestAPIClient }) => {
+      const response = await goRestAPIClient.getAllTodos();
 
       // response status assertion
       expect(response.status()).toBe(200);
@@ -53,7 +53,7 @@ goRestTest.describe('GoRest API - Todos Endpoint', () => {
 
       // response body assertions
       const body = await response.json();
-      const postIds = body.map((post: any) => post.id);  // store all the existing ids into an array.
+      const todoIds = body.map((todo: any) => todo.id);  // store all the existing ids into an array.
 
       expect(Array.isArray(body)).toBe(true);
       expect(body.length).toBe(10);
@@ -65,44 +65,43 @@ goRestTest.describe('GoRest API - Todos Endpoint', () => {
     goRestTest('GET - should return a single post by ID with status 200', async ({ goRestAPIClient }) => {
       
       const randomIds: number[] = [
-                                    postIds[Math.floor(Math.random() * postIds.length)]!,
-                                    postIds[Math.floor(Math.random() * postIds.length)]!,
-                                    postIds[Math.floor(Math.random() * postIds.length)]!
+                                    todoIds[Math.floor(Math.random() * todoIds.length)]!,
+                                    todoIds[Math.floor(Math.random() * todoIds.length)]!,
+                                    todoIds[Math.floor(Math.random() * todoIds.length)]!
       ];
 
-      for (const postId of postIds) {
-        console.log(`Testing GET /users/${userId} endpoint...`);
-        const response = await goRestAPIClient.getPostById(postId);
+      for (const todoId of todoIds) {
+        console.log(`Testing GET /todos/${todoId} endpoint...`);
+        const response = await goRestAPIClient.getTodoById(todoId);
 
         // response status assertion
         expect(response.status()).toBe(200);
-        console.log(`GET /posts/${postId} - Response Status:`, response.status());
+        console.log(`GET /todos/${todoId} - Response Status:`, response.status());
 
         // response body assertions
         const body = await response.json();
       
-        expect(body).toHaveProperty('id', postId);
-        expect(body).toHaveProperty('name');
-        console.log(body.name);
-        expect(body).toHaveProperty('email');
-        expect(body).toHaveProperty('gender');
+        expect(body).toHaveProperty('id', todoId);
+        expect(body).toHaveProperty('title');
+        console.log(body.title);
+        expect(body).toHaveProperty('description');
         expect(body).toHaveProperty('status');
       }
 
     });
 
-    // GET - Error on invalid post ID
-      goRestTest('GET - should return 404 for invalid user ID', async ({ goRestAPIClient }) => {
+    // GET - Error on invalid todo ID
+      goRestTest('GET - should return 404 for invalid todo ID', async ({ goRestAPIClient }) => {
       
-      const userIds = [9975762]; // existing user IDs in the system
+      const todoIds = [9975762]; // existing todo IDs in the system
 
-      for (const userId of userIds) {
-        console.log(`Testing GET /posts/${postId} endpoint...`);
-        const response = await goRestAPIClient.getPostById(postId);
+      for (const todoId of todoIds) {
+        console.log(`Testing GET /todos/${todoId} endpoint...`);
+        const response = await goRestAPIClient.getTodoById(todoId);
 
         // response status assertion
         expect(response.status()).toBe(404);
-        //console.log(`GET /users/${userId} - Response Status:`, response.status());
+        //console.log(`GET /todos/${todoId} - Response Status:`, response.status());
 
         // response body assertions
         const body = await response.json();
@@ -110,26 +109,26 @@ goRestTest.describe('GoRest API - Todos Endpoint', () => {
       }
     });   
 
-  });  // end of GET/post collection 
+  });  // end of GET/todos collection 
 
 
   // -------------------------------------------------------
   // POST
   // -------------------------------------------------------  
 
-  goRestTest.describe('GoRest API - POST - posts', () => {
+  goRestTest.describe('GoRest API - POST - todos', () => {
 
-    // POST - Create a new post with valid data    
-    goRestTest('POST - should create a post successfully with status 201', async ({ goRestAPIClient }) => {
+    // POST - Create a new todo with valid data    
+    goRestTest('POST - should create a todo successfully with status 201', async ({ goRestAPIClient }) => {
 
-      // First, create a user to associate the post with
+      // First, create a user to associate the todo with
       const userResponse = await goRestAPIClient.createUser(createUserValidData);
       const userBody = await userResponse.json();
       userId = userBody.id;
       
-      // Then, create a post for that user
-      const postData = { ...createPostValidData, user_id: userId };
-      const response = await goRestAPIClient.createPost(userId, postData);
+      // Then, create a todo for that user
+      const todoData = { ...createTodoValidData, user_id: userId };
+      const response = await goRestAPIClient.createTodo(userId, todoData);
 
       // response status assertion
       expect(response.status()).toBe(201);
@@ -138,7 +137,7 @@ goRestTest.describe('GoRest API - Todos Endpoint', () => {
       // response body assertions
       const body = await response.json();
       expect(body).toHaveProperty('id');
-      postId = body.id; // store the created post ID for subsequent tests
+      todoId = body.id; // store the created todo ID for subsequent tests
 
       expect(body).toHaveProperty('user_id', createUserValidData.name);
       expect(body).toHaveProperty('title', createUserValidData.email);
@@ -185,12 +184,12 @@ goRestTest.describe('GoRest API - Todos Endpoint', () => {
   // PUT
   // -------------------------------------------------------  
 
-  goRestTest.describe('GoRest API - PUT - posts', () => {
+  goRestTest.describe('GoRest API - PUT - todos', () => {
 
-    // PUT - update post details with valid data    
-    goRestTest('PUT - should update a post successfully with status 200', async ({ goRestAPIClient }) => {
+    // PUT - update todo details with valid data    
+    goRestTest('PUT - should update a todo successfully with status 200', async ({ goRestAPIClient }) => {
       
-      const response = await goRestAPIClient.updatePost(postId, updatePostDetails);
+      const response = await goRestAPIClient.updateTodo(todoId, updateTodoDetails);
 
       // response status assertion
       expect(response.status()).toBe(200);
@@ -200,25 +199,25 @@ goRestTest.describe('GoRest API - Todos Endpoint', () => {
       const body = await response.json();
 
       // generic assertion — validates response matches request dynamically
-      Object.keys(updatePostDetails).forEach(key => {
-        expect(body[key]).toBe(updatePostDetails[key as keyof typeof updatePostDetails]);
+      Object.keys(updateTodoDetails).forEach(key => {
+        expect(body[key]).toBe(updateTodoDetails[key as keyof typeof updateTodoDetails]);
       });
     
     });  
 
-  }); // end of PUT/posts collection
+  }); // end of PUT/todos collection
 
 
   // -------------------------------------------------------
   // PATCH
   // -------------------------------------------------------  
 
-  goRestTest.describe('GoRest API - PATCH - posts', () => {
+  goRestTest.describe('GoRest API - PATCH - todos', () => {
 
-    // PATCH - update post details with valid data    
-    goRestTest('PATCH - should update a post successfully with status 200', async ({ goRestAPIClient }) => {
+    // PATCH - update todo details with valid data    
+    goRestTest('PATCH - should update a todo successfully with status 200', async ({ goRestAPIClient }) => {
       
-      const response = await goRestAPIClient.patchPost(postId, patchPostBody);
+      const response = await goRestAPIClient.patchTodo(todoId, patchTodoStatus);
 
       // response status assertion
       expect(response.status()).toBe(200);
@@ -228,25 +227,25 @@ goRestTest.describe('GoRest API - Todos Endpoint', () => {
       const body = await response.json();
 
       // generic assertion — validates response matches request dynamically
-      Object.keys(patchPostBody).forEach(key => {
-        expect(body[key]).toBe(patchPostBody[key as keyof typeof patchPostBody]);
+      Object.keys(patchTodoStatus).forEach(key => {
+        expect(body[key]).toBe(patchTodoStatus[key as keyof typeof patchTodoStatus]);
       });
     
     });  
 
-  }); // end of PATCH/posts collection
+  }); // end of PATCH/todos collection
 
 
   // -------------------------------------------------------
   // DELETE
   // -------------------------------------------------------  
 
-  goRestTest.describe('GoRest API - DELETE - posts', () => {
+  goRestTest.describe('GoRest API - DELETE - todos', () => {
 
-    // DELETE - delete a post    
-    goRestTest('DELETE - should delete a post successfully with status 204', async ({ goRestAPIClient }) => {
+    // DELETE - delete a todo    
+    goRestTest('DELETE - should delete a todo successfully with status 204', async ({ goRestAPIClient }) => {
 
-      const response = await goRestAPIClient.deletePost(postId);
+      const response = await goRestAPIClient.deleteTodo(todoId);
 
       // response status assertion
       expect(response.status()).toBe(204);
@@ -256,13 +255,13 @@ goRestTest.describe('GoRest API - Todos Endpoint', () => {
       const body = await response.json();
 
       // generic assertion — validates response matches request dynamically
-      Object.keys(patchPostBody).forEach(key => {
-        expect(body[key]).toBe(patchPostBody[key as keyof typeof patchPostBody]);
+      Object.keys(patchTodoStatus).forEach(key => {
+        expect(body[key]).toBe(patchTodoStatus[key as keyof typeof patchTodoStatus]);
       });
     
     });  
 
-  }); // end of PATCH/posts collection
+  }); // end of PATCH/todos collection
 
 
 
