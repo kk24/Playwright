@@ -69,7 +69,7 @@ export class GoRestAPIClient {
     return await this.request.patch(`/public/v2/posts/${id}`, { data });
   }
 
-  async deletePost(id: number) {
+  async deletePost(id: number) { 
     return await this.request.delete(`/public/v2/posts/${id}`);
   }
 

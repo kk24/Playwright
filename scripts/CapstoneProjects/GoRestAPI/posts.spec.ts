@@ -14,16 +14,18 @@
 // Import necessary modules and fixtures
 import { goRestTest, expect } from '../../../fixtures';
 
+
 // Import test data - POST
+import createUserValidData from './testData/users/POST/createUser_valid.json';
 import createPostValidData from './testData/posts/POST/createPost_valid.json';
-import createPostMissingBody from './testData/posts/POST/createPost_missingBody.json';
-import createPostBlankTitle from './testData/posts/POST/createPost_blankTitle.json';
+//import createPostMissingBody from './testData/posts/POST/createPost_missingBody.json';
+//import createPostBlankTitle from './testData/posts/POST/createPost_blankTitle.json';
 
 // Import test data - PUT
-import updatePostDetails from './testData/users/PUT/updatePost_title.json';
+import updatePostDetails from './testData/posts/PUT/updatePost_title.json';
 
 // Import test data - PATCH
-import patchPostStatus from './testData/users/PATCH/patchPost_body.json';
+import patchPostBody from './testData/posts/PATCH/patchPost_body.json';
 
 
 // variable: userId [store the ID of the user created during POST test to be used in subsequent PUT, PATCH, DELETE tests] 
@@ -117,10 +119,17 @@ goRestTest.describe('GoRest API - Posts Endpoint', () => {
 
   goRestTest.describe('GoRest API - POST - posts', () => {
 
-    // POST - Create a new user with valid data    
-    goRestTest('POST - should create a user successfully with status 201', async ({ goRestAPIClient }) => {
+    // POST - Create a new post with valid data    
+    goRestTest('POST - should create a post successfully with status 201', async ({ goRestAPIClient }) => {
+
+      // First, create a user to associate the post with
+      const userResponse = await goRestAPIClient.createUser(createUserValidData);
+      const userBody = await userResponse.json();
+      userId = userBody.id;
       
-      const response = await goRestAPIClient.createPost(createPostValidData);
+      // Then, create a post for that user
+      const postData = { ...createPostValidData, user_id: userId };
+      const response = await goRestAPIClient.createPost(userId, postData);
 
       // response status assertion
       expect(response.status()).toBe(201);
@@ -129,59 +138,59 @@ goRestTest.describe('GoRest API - Posts Endpoint', () => {
       // response body assertions
       const body = await response.json();
       expect(body).toHaveProperty('id');
-      userId = body.id; // store the created user ID for subsequent tests
+      postId = body.id; // store the created post ID for subsequent tests
 
-      expect(body).toHaveProperty('name', createUserValidData.name);
-      expect(body).toHaveProperty('email', createUserValidData.email);
-      expect(body).toHaveProperty('gender', createUserValidData.gender);
-      expect(body).toHaveProperty('status', createUserValidData.status);
-    
+      expect(body).toHaveProperty('user_id', createUserValidData.name);
+      expect(body).toHaveProperty('title', createUserValidData.email);
+      expect(body).toHaveProperty('body', createUserValidData.gender);
+     
     });  
 
-    // POST - Create a new user with invalid data (missing email)    
-    goRestTest('POST - should return 422 when email is missing', async ({ goRestAPIClient }) => {
+    // // POST - Create a new user with invalid data (missing email)    
+    // goRestTest('POST - should return 422 when email is missing', async ({ goRestAPIClient }) => {
       
-      const response = await goRestAPIClient.createUser(createUserMissingEmail);
+    //   const response = await goRestAPIClient.createUser(createUserMissingEmail);
 
-      // response status assertion
-      expect(response.status()).toBe(422);
-      //console.log(`POST /users - Response Status:`, response.status());
+    //   // response status assertion
+    //   expect(response.status()).toBe(422);
+    //   //console.log(`POST /users - Response Status:`, response.status());
 
-      // response body assertions
-      const body = await response.json();
-      expect(body.field).toBe('email');
-      expect(body.message).toBe('can\'t be blank');
-    });
+    //   // response body assertions
+    //   const body = await response.json();
+    //   expect(body.field).toBe('email');
+    //   expect(body.message).toBe('can\'t be blank');
+    // });
 
-    // POST - Create a new user with invalid data (unknown gender)    
-    goRestTest('POST - should return 422 when gender is invalid', async ({ goRestAPIClient }) => {
+    // // POST - Create a new user with invalid data (unknown gender)    
+    // goRestTest('POST - should return 422 when gender is invalid', async ({ goRestAPIClient }) => {
       
-      const response = await goRestAPIClient.createUser(createUserInvalidGender);
+    //   const response = await goRestAPIClient.createUser(createUserInvalidGender);
 
-      // response status assertion
-      expect(response.status()).toBe(422);
-      //console.log(`POST /users - Response Status:`, response.status());
+    //   // response status assertion
+    //   expect(response.status()).toBe(422);
+    //   //console.log(`POST /users - Response Status:`, response.status());
 
-      // response body assertions
-      const body = await response.json();
-      expect(body.field).toBe('gender');
-      expect(body.message).toBe('can\'t be blank, can be male or female');
-    });
+    //   // response body assertions
+    //   const body = await response.json();
+    //   expect(body.field).toBe('gender');
+    //   expect(body.message).toBe('can\'t be blank, can be male or female');
+    // });
   
  
-  });  // end of POST/users collection
+  });  // end of POST/posts collection
+
 
 
   // -------------------------------------------------------
   // PUT
   // -------------------------------------------------------  
 
-  goRestTest.describe('GoRest API - PUT - users', () => {
+  goRestTest.describe('GoRest API - PUT - posts', () => {
 
-    // PUT - update user details with valid data    
-    goRestTest('PUT - should update a user successfully with status 200', async ({ goRestAPIClient }) => {
+    // PUT - update post details with valid data    
+    goRestTest('PUT - should update a post successfully with status 200', async ({ goRestAPIClient }) => {
       
-      const response = await goRestAPIClient.updateUser(userId, updateUserDetails);
+      const response = await goRestAPIClient.updatePost(postId, updatePostDetails);
 
       // response status assertion
       expect(response.status()).toBe(200);
@@ -191,25 +200,25 @@ goRestTest.describe('GoRest API - Posts Endpoint', () => {
       const body = await response.json();
 
       // generic assertion — validates response matches request dynamically
-      Object.keys(updateUserDetails).forEach(key => {
-        expect(body[key]).toBe(updateUserDetails[key as keyof typeof updateUserDetails]);
+      Object.keys(updatePostDetails).forEach(key => {
+        expect(body[key]).toBe(updatePostDetails[key as keyof typeof updatePostDetails]);
       });
     
     });  
 
-  }); // end of PUT/users collection
+  }); // end of PUT/posts collection
 
 
   // -------------------------------------------------------
   // PATCH
   // -------------------------------------------------------  
 
-  goRestTest.describe('GoRest API - PATCH - users', () => {
+  goRestTest.describe('GoRest API - PATCH - posts', () => {
 
-    // PATCH - update user details with valid data    
-    goRestTest('PATCH - should update a user successfully with status 200', async ({ goRestAPIClient }) => {
+    // PATCH - update post details with valid data    
+    goRestTest('PATCH - should update a post successfully with status 200', async ({ goRestAPIClient }) => {
       
-      const response = await goRestAPIClient.patchUser(userId, patchUserStatus);
+      const response = await goRestAPIClient.patchPost(postId, patchPostBody);
 
       // response status assertion
       expect(response.status()).toBe(200);
@@ -219,25 +228,25 @@ goRestTest.describe('GoRest API - Posts Endpoint', () => {
       const body = await response.json();
 
       // generic assertion — validates response matches request dynamically
-      Object.keys(patchUserStatus).forEach(key => {
-        expect(body[key]).toBe(patchUserStatus[key as keyof typeof patchUserStatus]);
+      Object.keys(patchPostBody).forEach(key => {
+        expect(body[key]).toBe(patchPostBody[key as keyof typeof patchPostBody]);
       });
     
     });  
 
-  }); // end of PATCH/users collection
+  }); // end of PATCH/posts collection
 
 
   // -------------------------------------------------------
   // DELETE
   // -------------------------------------------------------  
 
-  goRestTest.describe('GoRest API - DELETE - users', () => {
+  goRestTest.describe('GoRest API - DELETE - posts', () => {
 
-    // DELETE - delete a user    
-    goRestTest('DELETE - should delete a user successfully with status 204', async ({ goRestAPIClient }) => {
+    // DELETE - delete a post    
+    goRestTest('DELETE - should delete a post successfully with status 204', async ({ goRestAPIClient }) => {
 
-      const response = await goRestAPIClient.deleteUser(userId);
+      const response = await goRestAPIClient.deletePost(postId);
 
       // response status assertion
       expect(response.status()).toBe(204);
@@ -247,13 +256,13 @@ goRestTest.describe('GoRest API - Posts Endpoint', () => {
       const body = await response.json();
 
       // generic assertion — validates response matches request dynamically
-      Object.keys(patchUserStatus).forEach(key => {
-        expect(body[key]).toBe(patchUserStatus[key as keyof typeof patchUserStatus]);
+      Object.keys(patchPostBody).forEach(key => {
+        expect(body[key]).toBe(patchPostBody[key as keyof typeof patchPostBody]);
       });
     
     });  
 
-  }); // end of PATCH/users collection
+  }); // end of PATCH/posts collection
 
 
 
