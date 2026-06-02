@@ -14,3 +14,7 @@ Thumbs.db
 # IDE files
 .vscode/
 .idea/
+
+# Allure results
+allure-results/
+allure-report/

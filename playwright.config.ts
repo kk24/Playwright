@@ -13,7 +13,8 @@ export default defineConfig({
   retries: 1, // retries for failed tests
   reporter: [
       ['html', { open: 'never' }], // generate HTML report
-      ['junit', { outputFile: 'test-results.xml', includeProjectInTestName: true, }] // generate JUnit XML report
+      ['junit', { outputFile: 'test-results.xml', includeProjectInTestName: true, }], // generate JUnit XML report
+      ['allure-playwright'] // generate Allure report
   ],
   
   use: {

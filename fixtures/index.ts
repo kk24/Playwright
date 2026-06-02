@@ -11,6 +11,15 @@ import { ParkingCostCalculatorPage } from '../pages/CalcPage_ParkingCostCalculat
 import { HomePage, RoomPage, ContactPage } from '../pages/RestfulBooker';
 import { GoRestAPIClient } from '../clients/GoRestAPI/GoRestAPIClient';
 
+import { writeFileSync, mkdirSync } from 'fs';
+
+mkdirSync('allure-results', { recursive: true });
+writeFileSync('allure-results/environment.properties',
+`Environment=${process.env.ENV}
+BaseURL=${process.env.BASE_URL}`
+);
+
+
 
 //
 // Fixture for BankLoginPage
