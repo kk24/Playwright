@@ -1,0 +1,76 @@
+name: GoRest API Tests - UAT
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch: # allows manual trigger from GitHub UI
+    inputs:
+        environment:
+            description: 'Select environment to run tests against'
+            required: true
+            default: 'uat'
+            type: choice
+            options:
+              - uat
+              - preprod
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright
+        run: npx playwright install
+
+      - name: Install Playwright dependencies
+        run: npx playwright install-deps
+
+      - name: Set environment
+        run: |
+         echo "ENV_NAME=${{ inputs.environment || 'uat' }}" >> $GITHUB_ENV
+
+      - name: Set API token
+        run: |
+          if [ "$ENV_NAME" = "uat" ]; then
+            echo "API_TOKEN=${{ secrets.API_TOKEN_UAT }}" >> $GITHUB_ENV
+          else
+            echo "API_TOKEN=${{ secrets.API_TOKEN_PRE }}" >> $GITHUB_ENV
+          fi
+
+      - name: Create env file
+        run: |
+          mkdir -p environments
+          echo "BASE_URL=${{ vars.BASE_URL }}" >> environments/.env.$ENV_NAME
+          echo "API_TOKEN=$API_TOKEN" >> environments/.env.$ENV_NAME
+
+      - name: Run API tests
+        run: ENV=$ENV_NAME npx playwright test scripts/CapstoneProjects/GoRestAPI/users.spec.ts
+
+      - name: Upload HTML report - $ENV_NAME
+        uses: actions/upload-artifact@v4
+        if: always() # upload even if tests fail
+        with:
+          name: playwright-report-$ENV_NAME
+          path: playwright-report/
+          retention-days: 20
+    
+      - name: Upload XML report - $ENV_NAME
+        uses: actions/upload-artifact@v4
+        if: always() # upload even if tests fail
+        with:
+            name: junit-report-$ENV_NAME
+            path: test-results.xml
+            retention-days: 20
