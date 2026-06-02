@@ -46,6 +46,10 @@ jobs:
       - name: Install Playwright dependencies
         run: npx playwright install-deps
 
+      - name: Install Allure CLI
+        if: always()
+        run: npm install -g allure-commandline        
+
       - name: Set environment
         run: |
          echo "ENV_NAME=${{ inputs.environment || 'uat' }}" >> $GITHUB_ENV
